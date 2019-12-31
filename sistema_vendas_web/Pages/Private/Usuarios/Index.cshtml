@@ -1,0 +1,108 @@
+﻿@page
+@model sistema_vendas_web.Pages.Private.Usuarios.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+
+<div class="mt-2">
+    <h6>Usuario</h6>
+</div>
+<hr />
+
+<form asp-page="./Index" method="get" class="mt-5 mb-5">
+    <div class="col-sm-12">
+        <div class="input-group input-group-sm">
+            <input type="text" asp-for="SearchString" class="form-control" placeholder="Buscar pelo nome do usuario..." />
+            <div class="input-group-append">
+                <input type="submit" value="Pesquisar" class="btn btn-sm btn-primary" style="width:110px" />
+                <a asp-page="Create" class="btn btn-sm btn-primary ml-5" style="width:110px">Novo Usuario</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div style="height: 350px; overflow-y: scroll;">
+    <table class="table table-hover">
+        <thead>
+            <tr class="bg-light">
+                <th>
+                    @Html.DisplayNameFor(model => model.Usuario[0].COD_USUARIO)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Usuario[0].CPF)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Usuario[0].NOME)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Usuario[0].EMAIL)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Usuario[0].LOGIN)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Usuario[0].NIVEL_ACESSO)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Usuario)
+            {
+
+                var usuariomodal = "#myModal" + item.COD_USUARIO;
+                var usuarioid = "myModal" + item.COD_USUARIO;
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.COD_USUARIO)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CPF)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NOME)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EMAIL)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LOGIN)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NIVEL_ACESSO)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.COD_USUARIO" class="btn btn-sm btn-outline-primary" style="width:68px">Editar</a>
+                        <a asp-page="./Details" asp-route-id="@item.COD_USUARIO" class="btn btn-sm btn-outline-primary" style="width:68px">Detalhar</a>
+                        <button type="button" class="btn btn-sm btn-outline-primary" style="width:68px" data-toggle="modal" data-target="@usuariomodal">Deletar</button>
+
+                        <!-- MODAL DE CONFIRMAÇÃO -->
+                        <div class="modal fade" id="@usuarioid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title text-center" id="myModalLabel">Confirmar Exclusão</h4>
+                                        <button type="button" class="close ml-auto" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body text-center">
+                                        <p>Você tem certeza que deseja excluir o usuário:</p>
+                                        <p>@item.COD_USUARIO - @item.NOME</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a asp-page-handler="Delete" asp-route-Id="@item.COD_USUARIO" id="deleteBtn" class="btn btn-sm bg-danger mr-1">Deletar</a>
+                                        <button type="button" class="btn btn-sm" data-dismiss="modal">Fechar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

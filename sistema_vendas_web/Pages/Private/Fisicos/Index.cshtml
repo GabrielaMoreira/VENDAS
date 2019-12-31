@@ -1,0 +1,137 @@
+﻿@page
+@model sistema_vendas_web.Pages.Private.Fisicos.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+
+<div class="mt-2">
+    <h6>Cliente Fisico</h6>
+</div>
+<hr />
+
+<form asp-page="./Index" method="get" class="mt-5 mb-5">
+    <div class="col-sm-12">
+        <div class="input-group input-group-sm">
+            <input type="text" asp-for="SearchString" class="form-control col-sm-9" placeholder="Buscar pelo nome do cliente..." />
+            <select asp-for="Status" class="form-control col-sm-1">
+                <option value="" selected disabled>Status</option>
+                <option value="">Todos</option>
+                <option value="Ativo">Ativo</option>
+                <option value="Inativo">Inativo</option>
+            </select>
+            <div class="input-group-append">
+                <input type="submit" value="Pesquisar" class="btn btn-sm btn-primary" style="width:110px" />
+                <a asp-page="Create" class="btn btn-sm btn-primary ml-5" style="width:110px">Novo Cliente</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div style="height: 350px; overflow-y: scroll;">
+    <table class="table table-hover">
+        <thead>
+            <tr class="bg-light">
+                <th>
+                    @Html.DisplayNameFor(model => model.Fisico[0].COD_CLIENTE)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fisico[0].NOME)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fisico[0].CPF)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fisico[0].EMAIL)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fisico[0].STATUS)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Fisico)
+            {
+
+                var clientemodal = "#Modal" + item.COD_CLIENTE;
+                var clienteid = "Modal" + item.COD_CLIENTE;
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.COD_CLIENTE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NOME)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CPF)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EMAIL)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.STATUS)
+                    </td>
+                    <td>
+                        @if (@item.STATUS == "Inativo")
+                        {
+                            <a asp-page="./Edit" asp-route-id="@item.COD_CLIENTE" class="btn btn-sm btn-outline-secondary disabled" style="width:68px">Editar</a>
+                            <a asp-page="./Details" asp-route-id="@item.COD_CLIENTE" class="btn btn-sm btn-outline-secondary disabled" style="width:68px">Detalhar</a>
+                            <button type="button" class="btn btn-sm btn-outline-primary" style="width:68px" data-toggle="modal" data-target="@clientemodal">Ativar</button>
+
+                            <!-- MODAL DE CONFIRMAÇÃO -->
+                            <div class="modal fade" id="@clienteid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title text-center" id="myModalLabel">Confirmar Ativação</h4>
+                                            <button type="button" class="close ml-auto" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                            <p>Você tem certeza que deseja ativar o cliente:</p>
+                                            <p>@item.COD_CLIENTE - @item.NOME</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a asp-page-handler="Ativar" asp-route-Id="@item.COD_CLIENTE" id="deleteBtn" class="btn btn-sm bg-danger mr-1">Ativar</a>
+                                            <button type="button" class="btn btn-sm" data-dismiss="modal">Fechar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                        else
+                        {
+                            <a asp-page="./Edit" asp-route-id="@item.COD_CLIENTE" class="btn btn-sm btn-outline-primary" style="width:68px">Editar</a>
+                            <a asp-page="./Details" asp-route-id="@item.COD_CLIENTE" class="btn btn-sm btn-outline-primary" style="width:68px">Detalhar</a>
+                            <button type="button" class="btn btn-sm btn-outline-primary" style="width:68px" data-toggle="modal" data-target="@clientemodal">Inativar</button>
+
+                            <!-- MODAL DE CONFIRMAÇÃO -->
+                            <div class="modal fade" id="@clienteid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title text-center" id="myModalLabel">Confirmar Inativação</h4>
+                                            <button type="button" class="close ml-auto" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                            <p>Você tem certeza que deseja inativar o cliente:</p>
+                                            <p>@item.COD_CLIENTE - @item.NOME</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a asp-page-handler="Inativar" asp-route-Id="@item.COD_CLIENTE" id="deleteBtn" class="btn btn-sm bg-danger mr-1">Inativar</a>
+                                            <button type="button" class="btn btn-sm" data-dismiss="modal">Fechar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

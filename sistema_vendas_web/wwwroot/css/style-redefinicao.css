@@ -1,0 +1,26 @@
+/*Limpar as formatações padrões*/
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#content-redefinir{
+  width: 480px;
+  margin: 6% auto;
+  border: 2px solid rgba(255,255,255,0.0);
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 2%;
+}
+.content-red{
+  width: 380px;
+  margin: 6% auto;
+}
+body{
+background-image: linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);
+}
+.cor-botao{
+  background-color: #229FCB;
+  border: 2px solid #229FCB;
+  color: #ffffff;
+  border-radius: 10%;
+}

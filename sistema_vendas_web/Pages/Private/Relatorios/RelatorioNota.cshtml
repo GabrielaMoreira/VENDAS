@@ -1,0 +1,96 @@
+﻿@page
+@model sistema_vendas_web.Pages.Private.Relatorios.RelatorioNotaModel
+@{
+    ViewData["Title"] = "Nota Fiscal";
+    Layout = "_Layout";
+}
+
+<div class="mt-2">
+    <h6>Relatorio Nota Fiscal</h6>
+</div>
+<hr />
+
+<form asp-page="./RelatorioNota" method="get" class="mt-5 mb-5">
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-4">
+                <label>NUMERO DA NOTA FISCAL</label>
+                <input asp-for="SearchString" class="form-control form-control-sm" />
+            </div>
+            <div class="col col2 col-sm-3">
+                <label>SITUAÇÃO DA NOTA FISCAL</label>
+                <select asp-for="Status" class="form-control form-control-sm">
+                    <option value="" selected disabled>Seleciona</option>
+                    <option value="">Todos</option>
+                    <option value="Ativo">Emitida</option>
+                    <option value="Cancelado">Cancelada</option>
+                </select>
+            </div>
+            <div class="col col3 col-sm-3">
+                <label>DATA DE EMISSÃO</label>
+                <div class="input-group">
+                    <input asp-for="Inicial" class="form-control form-control-sm" />
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><img src="~/image/icon/16px/calendar.png" /></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col col4 col-sm-2 ml-auto">
+                <label>.</label>
+                <input type="submit" value="Gerar Relatório" class="btn btn-sm btn btn-primary" style="width:180px" />
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<table class="table table-hover">
+    <thead>
+        <tr class="bg-light">
+            <th>
+                Nº NOTA
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NotaFiscal[0].DATA_EMISSAO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NotaFiscal[0].COD_CLIENTE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NotaFiscal[0].COD_PEDIDO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NotaFiscal[0].TOTAL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NotaFiscal[0].STATUS)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.NotaFiscal)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NUM_NOTA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DATA_EMISSAO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.COD_CLIENTE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.COD_PEDIDO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TOTAL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.STATUS)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

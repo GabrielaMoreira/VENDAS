@@ -1,0 +1,14 @@
+﻿@page
+@model IndexModel
+@using Microsoft.AspNetCore.Http;
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "_Layout";
+}
+
+    <div class="d-flex align-items-center">
+        <div class="container text-center" style="margin-top:20%;">
+            <p>Olá, Seja Bem vindo: @HttpContext.Session.GetString("_Name")</p>
+        </div>
+    </div>

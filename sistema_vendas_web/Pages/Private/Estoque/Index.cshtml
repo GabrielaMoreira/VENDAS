@@ -1,0 +1,75 @@
+﻿@page
+@model sistema_vendas_web.Pages.Private.Estoque.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+
+<div class="mt-2">
+    <h6>Estoque dos produtos</h6>
+</div>
+<hr />
+
+<form asp-page="./Index" method="get" class="mt-5 mb-5">
+    <div class="col-sm-12">
+        <div class="input-group input-group-sm">
+            <input type="text" asp-for="SearchString" class="form-control col-sm-9" placeholder="Buscar pelo nome do produto..." />
+            <div class="input-group-append">
+                <input type="submit" value="Pesquisar" class="btn btn-sm btn-primary" style="width:110px" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div style="height: 350px; overflow-y: scroll;">
+    <table class="table table-hover">
+        <thead>
+            <tr class="bg-light">
+                <th>
+                    @Html.DisplayNameFor(model => model.Produto[0].COD_PRODUTO)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Produto[0].DESCRICAO)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Produto[0].COR)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Produto[0].VALOR_UNITARIO)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Produto[0].QTD_MIN_ESTOQUE)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Produto[0].QTD_ESTOQUE)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Produto)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.COD_PRODUTO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DESCRICAO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.COR)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VALOR_UNITARIO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QTD_MIN_ESTOQUE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QTD_ESTOQUE)
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

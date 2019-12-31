@@ -1,0 +1,60 @@
+﻿@page
+@model sistema_vendas_web.Pages.Account.AutenticacaoUsuarioModel
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <!-- DESCRIPTION -->
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="sales web software developed as graduation final work">
+    <meta name="author" content="gabriela_moreira, ariane_lima, amanda_carvalheiro">
+    <meta name="keywords" content="fitex, tape, crm, web software">
+
+    <!-- META TAGS -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- LINKS -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/images/timbre/icon.ico" />
+    <link rel="stylesheet" href="~/bootstrap/bootstrap.css" asp-append-version="true" />
+    <link rel="stylesheet" type="text/css" href="~/css/form-logar.css" asp-append-version="true" />
+
+</head>
+<body>
+    <div class="wrapper">
+        <form method="post" class="form-signin">
+            <hr />
+            <h2 class="text-center">Olá, Usuário</h2>
+            <hr />
+
+            <input asp-for="Login" class="form-control mt-3 mb-3" />
+            <span asp-validation-for="Login"></span>
+            <input asp-for="Senha" class="form-control mb-3" />
+            <span asp-validation-for="Senha"></span>
+
+            <div asp-validation-summary="All"></div>
+
+            <div class="row">
+                <div class="col col-sm-6">
+                    <p>Esqueceu a senha?</p>
+                </div>
+                <div class="col col-sm-6" style="margin-left: -36px">
+                    <a asp-page="/Account/Redefinir">Clique aqui</a>
+                </div>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">Entrar</button>
+        </form>
+    </div>
+</body>
+</html>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

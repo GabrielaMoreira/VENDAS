@@ -1,0 +1,87 @@
+﻿@page
+@model sistema_vendas_web.Pages.Private.Produtos.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_Layout";
+}
+
+<h6 class="mt-2">Consulta Produto</h6>
+<hr />
+<form method="post">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Produto.COD_PRODUTO" />
+
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-4">
+                <label asp-for="Produto.COD_PRODUTO" class="control-label"></label>
+                <input asp-for="Produto.COD_PRODUTO" class="form-control" disabled/>
+                <span asp-validation-for="Produto.COD_PRODUTO" class="text-danger"></span>
+            </div>
+        </div>
+
+         <div class="form-row mt-2">
+                <div class="col col1 col-sm-8">
+                    <label asp-for="Produto.DESCRICAO" class="control-label"></label>
+                    <input asp-for="Produto.DESCRICAO" class="form-control" disabled/>
+                    <span asp-validation-for="Produto.DESCRICAO" class="text-danger"></span>
+                </div>
+                <div class="col col2 col-sm-2">
+                    <label asp-for="Produto.QTD_MIN_ESTOQUE" class="control-label"></label>
+                    <input asp-for="Produto.QTD_MIN_ESTOQUE" class="form-control" disabled/>
+                    <span asp-validation-for="Produto.QTD_MIN_ESTOQUE" class="text-danger"></span>
+                </div>
+                <div class="col col3 col-sm-2">
+                    <label asp-for="Produto.VALOR_UNITARIO" class="control-label"></label>
+                    <input asp-for="Produto.VALOR_UNITARIO" class="form-control" disabled/>
+                    <span asp-validation-for="Produto.VALOR_UNITARIO" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col col-sm-12">
+            <div class="form-row mt-2">
+                <div class="col col1 col-sm-2">
+                    <label asp-for="Produto.UNIDADE_MEDIDA" class="control-label"></label>
+                    <input asp-for="Produto.UNIDADE_MEDIDA" class="form-control" disabled/>
+                    <span asp-validation-for="Produto.UNIDADE_MEDIDA" class="text-danger"></span>
+                </div>
+                <div class="col col2 col-sm-2">
+                    <label asp-for="Produto.COR" class="control-label"></label>
+                    <input asp-for="Produto.COR" class="form-control" disabled/>
+                    <span asp-validation-for="Produto.COR" class="text-danger"></span>
+                </div>
+                <div class="col col2 col-sm-2">
+                    <label asp-for="Produto.ALIQUOTA_IPI" class="control-label"></label>
+                    <input asp-for="Produto.ALIQUOTA_IPI" class="form-control" disabled/>
+                    <span asp-validation-for="Produto.ALIQUOTA_IPI" class="text-danger"></span>
+                </div>
+                <div class="col col2 col-sm-2">
+                    <label asp-for="Produto.VALOR_IPI" class="control-label"></label>
+                    <input asp-for="Produto.VALOR_IPI" class="form-control" disabled/>
+                    <span asp-validation-for="Produto.VALOR_IPI" class="text-danger"></span>
+                </div>
+                <div class="col col3 col-sm-2">
+                    <label asp-for="Produto.QTD_ESTOQUE" class="control-label"></label>
+                    <input asp-for="Produto.QTD_ESTOQUE" class="form-control" disabled/>
+                    <span asp-validation-for="Produto.QTD_ESTOQUE" class="text-danger"></span>
+                </div>
+                <div class="col col4 col-sm-2">
+                    <label asp-for="Produto.STATUS" class="control-label"></label>
+                    <input asp-for="Produto.STATUS" class="form-control" disabled />
+                    <span asp-validation-for="Produto.STATUS" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group mt-5">
+            <a asp-page="./Edit" asp-route-id="@Model.Produto.COD_PRODUTO" class="btn btn-sm btn-outline-primary ml-2" style="width:100px">Editar</a>
+            <a asp-page="Index" class="btn btn-sm btn-outline-primary ml-2" style="width:100px">Voltar a Lista</a>
+        </div>
+
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

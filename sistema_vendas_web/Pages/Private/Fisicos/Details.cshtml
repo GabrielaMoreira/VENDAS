@@ -1,0 +1,122 @@
+﻿@page
+@model sistema_vendas_web.Pages.Private.Fisicos.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_Layout";
+}
+
+<h6 class="mt-2">Consulta Cliente Fisico</h6>
+<hr />
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Fisico.COD_CLIENTE" />
+
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-3">
+                <label asp-for="Fisico.COD_CLIENTE" class="control-label"></label>
+                <input asp-for="Fisico.COD_CLIENTE" class="form-control" disabled />
+                <span asp-validation-for="Fisico.COD_CLIENTE" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-2 ml-auto">
+                <label asp-for="Fisico.DATA_CADASTRO" class="control-label"></label>
+                <input asp-for="Fisico.DATA_CADASTRO" class="form-control" disabled />
+                <span asp-validation-for="Fisico.DATA_CADASTRO" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-6">
+                <label asp-for="Fisico.NOME" class="control-label"></label>
+                <input asp-for="Fisico.NOME" class="form-control" disabled />
+                <span asp-validation-for="Fisico.NOME" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-3">
+                <label asp-for="Fisico.CPF" class="control-label"></label>
+                <input asp-for="Fisico.CPF" class="form-control" disabled />
+                <span asp-validation-for="Fisico.CPF" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-3">
+                <label asp-for="Fisico.DATA_NASCIMENTO" class="control-label"></label>
+                <input asp-for="Fisico.DATA_NASCIMENTO" class="form-control" disabled />
+                <span asp-validation-for="Fisico.DATA_NASCIMENTO" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-2">
+                <label asp-for="Fisico.RG" class="control-label"></label>
+                <input asp-for="Fisico.RG" class="form-control" disabled />
+                <span asp-validation-for="Fisico.RG" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-4">
+                <label asp-for="Fisico.EMAIL" class="control-label"></label>
+                <input asp-for="Fisico.EMAIL" class="form-control" disabled />
+                <span asp-validation-for="Fisico.EMAIL" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-3">
+                <label asp-for="Fisico.TELEFONE_1" class="control-label"></label>
+                <input asp-for="Fisico.TELEFONE_1" class="form-control" disabled />
+                <span asp-validation-for="Fisico.TELEFONE_1" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-3">
+                <label asp-for="Fisico.TELEFONE_2" class="control-label"></label>
+                <input asp-for="Fisico.TELEFONE_2" class="form-control" disabled />
+                <span asp-validation-for="Fisico.TELEFONE_2" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-row mt-2">           
+            <div class="col col1 col-sm-3">
+                <label asp-for="Fisico.CEP" class="control-label"></label>
+                <input asp-for="Fisico.CEP" class="form-control" disabled />
+                <span asp-validation-for="Fisico.CEP" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-9">
+                <label asp-for="Fisico.LOGRADOURO" class="control-label"></label>
+                <input asp-for="Fisico.LOGRADOURO" class="form-control" disabled />
+                <span asp-validation-for="Fisico.LOGRADOURO" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-1">
+                <label asp-for="Fisico.NUMERO" class="control-label"></label>
+                <input asp-for="Fisico.NUMERO" class="form-control" disabled />
+                <span asp-validation-for="Fisico.NUMERO" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-9">
+                <label asp-for="Fisico.BAIRRO" class="control-label"></label>
+                <input asp-for="Fisico.BAIRRO" class="form-control" disabled />
+                <span asp-validation-for="Fisico.BAIRRO" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-2">
+                <label asp-for="Fisico.COMPLEMENTO" class="control-label"></label>
+                <input asp-for="Fisico.COMPLEMENTO" class="form-control" disabled />
+                <span asp-validation-for="Fisico.COMPLEMENTO" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-7">
+                <label asp-for="Fisico.CIDADE" class="control-label"></label>
+                <input asp-for="Fisico.CIDADE" class="form-control" disabled />
+                <span asp-validation-for="Fisico.CIDADE" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-2">
+                <label asp-for="Fisico.UF" class="control-label"></label>
+                <input asp-for="Fisico.UF" class="form-control" disabled />
+                <span asp-validation-for="Fisico.UF" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-3">
+                <label asp-for="Fisico.STATUS" class="control-label"></label>
+                <input asp-for="Fisico.STATUS" class="form-control" disabled />
+                <span asp-validation-for="Fisico.STATUS" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group mt-5">
+        <a asp-page="./Edit" asp-route-id="@Model.Fisico.COD_CLIENTE" class="btn btn-sm btn-outline-primary ml-2" style="width:100px">Editar</a>
+        <a asp-page="./Index" class="btn btn-sm btn-outline-primary ml-2" style="width:100px">Voltar a Lista</a>
+    </div>
+</form>

@@ -1,0 +1,393 @@
+html{
+    scroll-behavior: smooth;
+    
+}
+
+/** NAVBAR **/
+#navbar {
+    background-color: #239fcb;
+}
+
+#navbar a{
+    color: white;
+}
+
+#navbar a:hover{
+    text-decoration: underline;
+}
+
+.button-login{
+    width: 90px;
+}
+
+.btn-outline-light:hover{
+    color: black;
+    font-weight: 500;
+}
+
+.btn-outline-light:hover{
+    color: black !important;
+    font-weight: 500;
+}
+
+/** LANDPAGE SECTION **/
+.carousel-caption-position{
+    margin-left: -8%;
+    width: 28%;
+    top: 45%;
+    transform: translateY(-45%);
+    bottom: initial;
+    text-align: left;
+    
+}
+
+.carousel-caption-position h1, .carousel-caption-position h5{
+    text-shadow: 3px 3px 5px black;
+}
+
+.carousel-caption-button{
+    width: 120px;
+}
+
+#landingpage img{
+    opacity: 0.9;
+}
+
+#btnAbout, #btnContact{
+    background-color: #239fcb;
+    border-radius: 5%;
+
+}
+
+#btnAbout:hover, #btnContact:hover{
+    background-color: #f2e9e9;
+    color: black;
+    font-weight: 500;
+    
+}
+
+
+/** LANDPAGE IMG CONFIG. **/
+.img-gradient{
+  position:relative;
+  display:inline-block;
+}
+
+.img-gradient:after {
+    content:'';
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    display:inline-block;
+    background: -moz-linear-gradient(top, rgba(255, 252, 252, 0) 0%, rgba(21, 19, 19, 0.6) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255, 252, 252, 0)), color-stop(100%,rgba(21, 19, 19, 0.6))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(255, 252, 252, 0) 0%,rgba(21, 19, 19, 0.6) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(255, 252, 252, 0) 0%,rgba(21, 19, 19, 0.6) 100%); /* Opera 11.10+ */   
+    background: linear-gradient(to bottom, rgba(255, 252, 252, 0) 0%,rgba(21, 19, 19, 0.6) 100%); /* W3C */
+}
+
+
+/** ABOUT SECTION **/
+.about-text-property{
+    text-align: justify;
+    width: 50%;
+    transform: translateX(50%);
+    padding-top: 2%;
+    border-top: 2px solid black;
+}
+
+.about-title-property{
+    text-align: center;
+}
+
+
+/** PRODUCT SECTION **/
+#product{
+    background-image: linear-gradient(rgb(232, 232, 232),rgb(25, 78, 96));
+    /*background-color: #0f3743;*/
+}
+
+.products-card{
+    height: 460px;
+    background-image: linear-gradient(#f9f9f9,rgba(29, 86, 103, 0.35));
+}
+
+.title-product-property{
+    color: black;
+    text-align: center;
+}
+
+
+/** FAQ SECTION **/
+.scroll-spy{
+    position: relative;
+    overflow: auto;
+    height: 480px;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #f9f9f9;
+    background-color: #229fcb;
+    border: #f9f9f9 solid 1px;
+}
+ 
+.nav-pills a{
+	color: black;
+}
+
+.nav-pills a:hover{
+	text-decoration: underline;
+}
+
+
+
+/** CONTACT SECTION **/
+#contact{
+    background-image: linear-gradient(rgb(232, 232, 232),rgb(25, 78, 96));
+    /*background-image: linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);*/
+}
+
+#title-contact{
+    color:black;
+}
+
+.form-control:focus {
+  border-color: beige;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(39, 29, 29, 0.46);
+}
+
+#submitContact{
+    width: 120px;
+    background-color: #229fcb;
+    color: white;
+}
+
+#submitContact:hover{
+    background-color: #ebe9e9;
+    color: black;
+}
+
+
+/** FOOTER **/
+#footer ul li a, #footer{    
+    color: black;
+}
+
+
+
+
+
+
+
+/** MEDIA QUERY **/
+@media only screen and (max-width: 1200px) {
+    .carousel-caption-position{
+        top: 40%;
+        transform: translateY(-40%);
+        bottom: initial;
+    }
+    .carousel-caption-position h1{
+        font-size: 2em;
+    }
+    .carousel-caption-position h6{
+        font-size: 0.9em;
+    }
+    #btnAbout, #btnContact{
+        font-size: 0.9em;
+    }
+    .about-text-property{
+        text-align: justify;
+        width: 70%;
+        transform: translateX(20%);       
+    }
+     #nav-spy-content{
+        font-size: 1em;
+    }
+    #nav-spy-content h4, #nav-spy-content h6{
+        font-size: 1.2em;
+    }
+    #nav-spy{
+        font-size: 0.9em;
+    }
+        
+}
+
+@media only screen and (max-width: 990px) {
+    .fixed-top
+    {
+        position: relative;
+        top: auto;
+    }
+    .carousel-caption-position{
+        top: 40%;
+        transform: translateY(-40%);
+        bottom: initial;
+    }
+    .carousel-caption-position h1{
+        font-size: 1.85em;
+    }
+    .carousel-caption-position h6{
+        font-size: 0.8em;
+    }
+    #btnAbout, #btnContact{
+        font-size: 0.8em;
+        width: 95px;
+    }
+    .about-text-property{
+        text-align: justify;
+        width: 70%;
+        transform: translateX(20%);       
+    }
+    #nav-spy-content{
+        font-size: 1em;
+    }
+    #nav-spy-content h4, #nav-spy-content h6{
+        font-size: 1.2em;
+    }
+    #nav-spy{
+        font-size: 0.9em;
+    }
+}
+
+@media only screen and (max-width: 870px) {
+    .carousel-caption-position{
+        top: 50%;
+        transform: translateY(-50%);
+        bottom: initial;
+    }
+    .carousel-caption-position h1{
+        font-size: 1.5em;
+    }
+    .carousel-caption-position h6{
+        font-size: 0.75em;
+    }
+    #btnAbout, #btnContact{
+        font-size: 0.75em;
+        width: 85px;
+    }
+    .about-text-property{
+        text-align: justify;
+        width: 70%;
+        transform: translateX(20%);       
+    }
+    .about-title-property{
+        font-size: 1.8em;
+    }
+    .title-product-property{
+        font-size: 1.8em;
+    }
+    .carousel-item{
+        font-size: 0.9em;
+    }
+    .carousel-item h5{
+        font-size: 1.5em;
+    }
+    .faq-text-property{
+        font-size: 1.8em;
+    }
+    #nav-spy-content{
+        font-size: 0.9em;
+    }
+    #nav-spy-content h4, #nav-spy-content h6{
+        font-size: 1.4em;
+    }
+    #nav-spy{
+        font-size: 0.8em;
+    }
+    #contact h2{
+        font-size: 1.8em;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .carousel-caption-position{
+        top: 55%;
+        transform: translateY(-55%);
+        bottom: initial;
+    }
+    .carousel-caption-position h1{
+        font-size: 1.2em;
+    }
+    .carousel-caption-position h6{
+        font-size: 0.6em;
+    }
+    .about-text-property{
+        text-align: justify;
+        width: 90%;
+        transform: translateX(5%);
+        font-size: 1em;
+    }
+    .about-title-property{
+        font-size: 1.8em;
+    }
+    .title-product-property{
+        font-size: 1.8em;
+    }
+    .carousel-item{
+        font-size: 0.9em;
+    }
+    .carousel-item h5{
+        font-size: 1.5em;
+    }
+    .faq-text-property{
+        font-size: 1.8em;
+    }
+    #nav-spy-content{
+        font-size: 0.9em;
+    }
+    #nav-spy-content h4, #nav-spy-content h6{
+        font-size: 1.4em;
+    }
+    #nav-spy{
+        font-size: 0.8em;
+    }
+    #contact h2{
+        font-size: 1.8em;
+    }
+}
+
+@media only screen and (max-width: 560px) {
+    .carousel-caption-position{
+        top: 65%;
+        transform: translateY(-65%);
+        bottom: initial;
+    }
+    .carousel-caption-position h1{
+        font-size: 1em;
+    }
+    .carousel-caption-position h6{
+        font-size: 0.5em;
+    }
+    .about-text-property{
+        text-align: justify;
+        width: 90%;
+        transform: translateX(5%);
+        font-size: 0.7em;
+    }
+    .about-title-property{
+        font-size: 1.5em;
+    }
+     .title-product-property{
+        font-size: 1.5em;
+    }
+    .carousel-item{
+        font-size: 0.7em;
+    }
+    .carousel-item h5{
+        font-size: 1.3em;
+    }
+    .faq-text-property{
+        font-size: 1.5em;
+    }
+    #nav-spy-content{
+        font-size: 0.7em;
+    }
+    #nav-spy-content h4, #nav-spy-content h6{
+        font-size: 1.3em;
+    }
+    #contact h2{
+        font-size: 1.5em;
+    }
+}

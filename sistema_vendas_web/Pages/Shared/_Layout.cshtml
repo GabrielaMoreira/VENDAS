@@ -1,0 +1,152 @@
+﻿@using Microsoft.AspNetCore.Http;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <!-- DESCRIPTION -->
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="sales web software developed as graduation final work">
+    <meta name="author" content="gabriela_moreira, ariane_lima, amanda_carvalheiro">
+    <meta name="keywords" content="fitex, tape, crm, web software">
+
+    <!-- META TAGS -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- LINKS -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/images/timbre/icon.ico" />
+    <link rel="stylesheet" href="~/bootstrap/bootstrap.css" asp-append-version="true" />
+    <link rel="stylesheet" type="text/css" href="~/css/style-home.css" asp-append-version="true" />
+
+</head>
+<body>
+
+    <partial name="_CookieConsentPartial" />
+
+    <!-- NAV_BAR_USER -->
+    <nav id="navbarUser" class="navbar py-0 navbar-dark bg-dark navbar-expand-lg py-md-0">
+        <button class="navbar-toggler mt-1" type="button" data-toggle="collapse" data-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa fa-bars"></i>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Usuário: @{
+                            var sessionName = new Byte[20];
+                            bool nameOK = Context.Session.TryGetValue("_Login", out sessionName);
+
+                            if (nameOK)
+                            {
+                                string result = System.Text.Encoding.UTF8.GetString(sessionName);
+                                @result
+                            }
+                            else
+                            {
+                                string result = "Meu Perfil";
+                                @result
+                            }
+                        }
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" asp-area="" asp-page="../AlterarSenha/Index">Alterar Senha</a>
+                        <a class="dropdown-item" asp-area="" asp-page="../../Index">Sair</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- NAV_BAR_MENU -->
+    <nav id="navbarMenu" class="navbar py-1 navbar-dark navbar-expand-lg ">
+        <div id="navMenu" class="container">
+            <a class="navbar-brand" asp-area="" asp-page="../Home/Home">
+                <img src="~/image/stamp/full_logo.png" style="width:110px; height:45px">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSite">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown ml-5">
+
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Cliente
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" asp-area="" asp-page="../Fisicos/Index">Físico</a>
+                            <a class="dropdown-item" asp-area="" asp-page="../Juridicos/Index">Jurídico</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown ml-2">
+                        <a class="nav-link" asp-area="" asp-page="../Pedidos/Index">Pedido</a>
+                    </li>
+                    <li class="nav-item dropdown ml-2">
+                        <a class="nav-link" asp-area="" asp-page="../Produtos/Index">Produto</a>
+                    </li>
+                    <li class="nav-item dropdown ml-2">
+                        <a class="nav-link" asp-area="" asp-page="../Estoque/Index">Estoque</a>
+                    </li>
+                    <li class="nav-item dropdown ml-2">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Relatório
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" asp-area="" asp-page="../Relatorios/RelatorioProduto">Produto</a>
+                            <a class="dropdown-item" asp-area="" asp-page="../Relatorios/RelatorioPedido">Pedido</a>
+                            <a class="dropdown-item" asp-area="" asp-page="../Relatorios/RelatorioNota">Nota Fiscal</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown ml-2">
+                        <a class="nav-link" asp-area="" asp-page="../Notas/Index">Nota Fiscal</a>
+                    </li>
+                    @{
+                        var sessionRole = new Byte[20];
+                        bool RoleOK = Context.Session.TryGetValue("_Role", out sessionName);
+
+                        if (nameOK)
+                        {
+                            string result = System.Text.Encoding.UTF8.GetString(sessionName);
+                            if (result == "Gerente")
+                            {
+                                <li class="nav-item dropdown ml-2">
+                                    <a class="nav-link" asp-area="" asp-page="../Usuarios/Index">Usuário</a>
+                                </li>
+                            }
+
+                        }
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- LOAD BODY -->
+    <div class="container">
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="pb-5">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <p>&copy; 2019 - sistema_vendas_web</p>
+    </footer>
+
+    <!-- JQUERY.JS, POPPER.JS, BOOTSTRAP.JS -->
+    <environment include="Development">
+        <script src="~/node_module/jquery/dist/jquery.js" asp-append-version="true"></script>
+        <script src="~/node_module/popper.js/dist/umd/popper.js" asp-append-version="true"></script>
+        <script src="~/node_module/bootstrap/dist/js/bootstrap.js" asp-append-version="true"></script>
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

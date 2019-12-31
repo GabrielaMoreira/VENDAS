@@ -1,0 +1,613 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Index_Sistema_Vendas_Fitex";
+    Layout = "_Layout_Index";
+
+}
+
+<!-- LandingPage -->
+<div id="landingpage" class="img-gradient">
+    <img src="~/image/stamp/img-landpage.jpg" class="img-fluid">
+    <div class="card-body carousel-caption carousel-caption-position">
+        <h1 class="mb-3">A solução para o fechamento de pacotes</h1>
+        <h6 class="mb-3">Fitex, a especialista em unificação de pacotes e embalagens finais.</h6>
+        <div class="btn-group" role="group">
+            <a id="btnAbout" href="#about" class="btn btn-dark btn-md carousel-caption-button d-none d-md-block mr-3" role="button">Sobre Nós</a>
+            <a id="btnContact" href="#contact" class="btn btn-dark btn-md carousel-caption-button d-none d-md-block" role="button">Contato</a>
+        </div>
+    </div>
+</div>
+
+<!-- About -->
+<div id="about" class="p-5 bg-light">
+    <div class="p-5 mt-5 mb-5">
+        <h2 class="about-title-property"><img src="~/image/icon/32px/home.png" style="padding-right: 1%" />SOBRE NÓS</h2>
+        <div class="about-text-property bg-light p-5">
+            <p>
+                Há mais de 50 anos no mercado, a FITEX tem sua sede localizada na cidade de Dracena - interior oeste de São Paulo - e dispõem de uma significativa presença no ramo do comércio de insumos para fechar, atar, unitizar e paletizar volumes de transporte.
+            </p>
+            <p>
+                Nosso setor de vendas, apenas na cidade de Dracena, conta com 27 funcionários, além de um efetivo de 300 colaboradores e profissionais de venda por todo o Brasil.
+            </p>
+            <p>
+                Atendendo pedidos do varejo ao atacado, abastecemos clientes e empresas com fitas adesivas, cintas plásticas, papéis e fitas gomados, filme stretch e selos metálicos. Temos como objetivo manter a integridade com nossos produtos e o atendimento decoroso com nossos clientes.
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Product -->
+<div id="product" class="pt-5 pb-5 bg-dark">
+    <br />
+    <h2 class="title-product-property"><img src="~/image/icon/32px/box.png" style="padding-right: 1%" />PRODUTOS</h2>
+    <!-- Products LG Scale-->
+    <div id="product-lg" class="carousel slide d-none d-md-block" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#product-lg" data-slide-to="0" class="active"></li>
+            <li data-target="#product-lg" data-slide-to="1"></li>
+            <li data-target="#product-lg" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <!-- FIRST SLIDE -->
+            <div class="carousel-item active">
+                <div class="row pr-5 pl-5 pb-5 pt-3" alt="First slide">
+                    <div class="col-sm-4 p-3">
+                        <div class="card products-card p-3">
+                            <img src="~/image/product/fitas-adesivas.jpg" class="img-fluid">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">POLYPACK 380 TR</h5>
+                                <h6 class="card-subtitle mb-2 text-muted text-center">Sem Impressão</h6>
+                                <p class="card-text">
+                                    Fabricadas com filme de polipropileno biorientado (BOPP) de 18g/m² e adesivo acrílico de 17g/m²
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 p-3">
+                        <div class="card products-card p-3">
+                            <img src="~/image/product/fitas-gomada.jpg" class="img-fluid">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">POLYPACK 470</h5>
+                                <h6 class="card-subtitle mb-2 text-muted text-center">Sem Impressão e Com Impressão</h6>
+                                <p class="card-text">
+                                    Fabricadas com filme de polipropileno biorientado (BOPP) de 27g/m² e adesivo acrílico de 19g/m²
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 p-3">
+                        <div class="card products-card p-3">
+                            <img src="~/image/product/fitas-press.jpg" class="img-fluid">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">POLYPRESS 470</h5>
+                                <h6 class="card-subtitle mb-2 text-muted text-center">Sem Impressão e Com Impressão</h6>
+                                <p class="card-text">
+                                    Fabricadas com filme de polipropileno biorientado (BOPP) de 27g/m² e adesivo acrílico de 19g/m²
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- SECOND SLIDE -->
+            <div class="carousel-item">
+                <div class="row pr-5 pl-5 pb-5 pt-3" alt="Second slide">
+                    <div class="col-sm-4 p-3">
+                        <div class="card products-card p-3">
+                            <img src="~/image/product/fitas-kraft.jpg" class="img-fluid">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">SUPERBAND SEM REFORÇO</h5>
+                                <h6 class="card-subtitle mb-2 text-muted text-center">Sem Impressão e Com Impressão</h6>
+                                <p class="card-text">
+                                    Fabricada com papel KRAFT 80g/m² e cola de origem vegetal 36g/m²
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 p-3">
+                        <div class="card products-card p-3">
+                            <img src="~/image/product/fitas-kraft-reforco.png" class="img-fluid">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">SUPERBAND COM REFORÇO</h5>
+                                <h6 class="card-subtitle mb-2 text-muted text-center">Sem Impressão e Com Impressão</h6>
+                                <p class="card-text">
+                                    Fabricada com papel KRAFT 80g/m² e cola de origem vegetal 36g/m²
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 p-3">
+                        <div class="card products-card p-3">
+                            <img src="~/image/product/cinta-plastica.png" class="img-fluid">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">PLASTPET</h5>
+                                <h6 class="card-subtitle mb-2 text-muted text-center">Recartilhada ou Lisa</h6>
+                                <p class="card-text">
+                                    Cinta plástica 12mm com 15m Plastpet
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- THIRD SLIDE -->
+            <div class="carousel-item">
+                <div class="row pr-5 pl-5 pb-5 pt-3" alt="Third slide">
+                    <div class="col-sm-4 p-3">
+                        <div class="card products-card p-3">
+                            <img src="~/image/product/stretch-manual.jpg" class="img-fluid">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">STRETCH DRK3</h5>
+                                <h6 class="card-subtitle mb-2 text-muted text-center">Para uso manual</h6>
+                                <p class="card-text">
+                                    File Stretch DRK3, tubete 3 polegadas para uso manual
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 p-3">
+                        <div class="card products-card p-3">
+                            <img src="~/image/product/stretch-automatico.jpg" class="img-fluid">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">STRETCH FPS</h5>
+                                <h6 class="card-subtitle mb-2 text-muted text-center">Para uso automático</h6>
+                                <p class="card-text">
+                                    Filme para uso em máquinas 200% e 250% estiramento. Filme de pilietileno linear de baixa densidade
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 p-3">
+                        <div class="card products-card p-3">
+                            <img src="~/image/product/selo-metalico.png" class="img-fluid">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">SELOS METÁLICOS</h5>
+                                <h6 class="card-subtitle mb-2 text-muted text-center">Aço TR, FA ou VR</h6>
+                                <p class="card-text">
+                                    Os Selos Para Fitas PET e PP são fabricados com aço de Baixo Carbono Relaminado
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#product-lg" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#product-lg" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <!-- Products SM Scale -->
+    <div id="product-sm" class="carousel slide d-block d-sm-none d-none d-sm-block d-md-none" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#product-sm" data-slide-to="0" class="active"></li>
+            <li data-target="#product-sm" data-slide-to="1"></li>
+            <li data-target="#product-sm" data-slide-to="2"></li>
+            <li data-target="#product-sm" data-slide-to="3"></li>
+            <li data-target="#product-sm" data-slide-to="4"></li>
+            <li data-target="#product-sm" data-slide-to="5"></li>
+            <li data-target="#product-sm" data-slide-to="6"></li>
+            <li data-target="#product-sm" data-slide-to="7"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="row p-5" alt="First slide">
+
+                    <div class="card products-card p-3">
+                        <img src="~/image/product/fitas-adesivas.jpg" class="img-fluid">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">POLYPACK 380 TR</h5>
+                            <h6 class="card-subtitle mb-2 text-muted text-center">Sem Impressão</h6>
+                            <p class="card-text">
+                                Fabricadas com filme de polipropileno biorientado (BOPP) de 18g/m² e adesivo acrílico de 17g/m²
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row p-5" alt="Second slide">
+
+                    <div class="card products-card p-3">
+                        <img src="~/image/product/fitas-gomada.jpg" class="img-fluid">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">POLYPACK 470</h5>
+                            <h6 class="card-subtitle mb-2 text-muted text-center">Sem Impressão e Com Impressão</h6>
+                            <p class="card-text">
+                                Fabricadas com filme de polipropileno biorientado (BOPP) de 27g/m² e adesivo acrílico de 19g/m²
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row p-5" alt="Third slide">
+
+                    <div class="card products-card p-3">
+                        <img src="~/image/product/fitas-gomada.jpg" class="img-fluid">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">POLYPACK 470</h5>
+                            <h6 class="card-subtitle mb-2 text-muted text-center">Sem Impressão e Com Impressão</h6>
+                            <p class="card-text">
+                                Fabricadas com filme de polipropileno biorientado (BOPP) de 27g/m² e adesivo acrílico de 19g/m²
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row p-5" alt="Fourth slide">
+
+                    <div class="card products-card p-3">
+                        <img src="~/image/product/fitas-press.jpg" class="img-fluid">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">POLYPRESS 470</h5>
+                            <h6 class="card-subtitle mb-2 text-muted text-center">Sem Impressão e Com Impressão</h6>
+                            <p class="card-text">
+                                Fabricadas com filme de polipropileno biorientado (BOPP) de 27g/m² e adesivo acrílico de 19g/m²
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row p-5" alt="Fifth slide">
+
+                    <div class="card products-card p-3">
+                        <img src="~/image/product/fitas-kraft-reforco.png" class="img-fluid">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">SUPERBAND COM REFORÇO</h5>
+                            <h6 class="card-subtitle mb-2 text-muted text-center">Sem Impressão e Com Impressão</h6>
+                            <p class="card-text">
+                                Fabricada com papel KRAFT 80g/m² e cola de origem vegetal 36g/m²
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row p-5" alt="Sixth slide">
+
+                    <div class="card products-card p-3">
+                        <img src="~/image/product/cinta-plastica.png" class="img-fluid">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">PLASTPET</h5>
+                            <h6 class="card-subtitle mb-2 text-muted text-center">Recartilhada ou Lisa</h6>
+                            <p class="card-text">
+                                Cinta plástica 12mm com 15m Plastpet
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row p-5" alt="Seventh slide">
+
+                    <div class="card products-card p-3">
+                        <img src="~/image/product/stretch-manual.jpg" class="img-fluid">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">STRETCH DRK3</h5>
+                            <h6 class="card-subtitle mb-2 text-muted text-center">Para uso manual</h6>
+                            <p class="card-text">
+                                File Stretch DRK3, tubete 3 polegadas para uso manual
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row p-5" alt="Eighth slide">
+
+                    <div class="card products-card p-3">
+                        <img src="~/image/product/stretch-automatico.jpg" class="img-fluid">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">STRETCH FPS</h5>
+                            <h6 class="card-subtitle mb-2 text-muted text-center">Para uso automático</h6>
+                            <p class="card-text">
+                                Filme para uso em máquinas 200% e 250% estiramento. Filme de pilietileno linear de baixa densidade
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row p-5" alt="Fourth slide">
+
+                    <div class="card products-card p-3">
+                        <img src="~/image/product/selo-metalico.png" class="img-fluid">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">SELOS METÁLICOS</h5>
+                            <h6 class="card-subtitle mb-2 text-muted text-center">Aço TR, FA ou VR</h6>
+                            <p class="card-text">
+                                Os Selos Para Fitas PET e PP são fabricados com aço de Baixo Carbono Relaminado
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#product-sm" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#product-sm" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+
+<!-- FAQ -->
+<div id="faq" class="p-5 bg-light">
+    <div class="container mt-5 mr-3">
+        <h2 class="text-center faq-text-property"><img src="~/image/icon/32px/globe.png" style="padding-right: 1%" />FAQ</h2>
+        <div class="row my-5 pt-2 pb-5">
+            <div id="nav-spy" class="ml-sm-3 ml-md-4 d-none d-sm-block">
+                <nav id="navbar_vertical" class="nav navbar-light bg-light">
+                    <nav class="nav nav-pills flex-column">
+                        <a class="nav-link" href="#clientes">CLIENTE</a>
+                        <a class="nav-link" href="#vendas">VENDA</a>
+                        <nav class="nav navbar-pills flex-column">
+                            <a class="nav-link ml-3" href="#atac_varej">Atacado/Varejo</a>
+                            <a class="nav-link ml-3" href="#vfisica">Venda Fisica</a>
+                            <a class="nav-link ml-3" href="#encomenda">Encomendas/Parcerias</a>
+                        </nav>
+                        <a class="nav-link" href="#produtos">PRODUTO</a>
+                        <nav class="nav navbar-pills flex-column">
+                            <a class="nav-link ml-3" href="#troca">Troca/Devolução</a>
+                            <a class="nav-link ml-3" href="#assistencia">Assistência Técnica</a>
+                            <a class="nav-link ml-3" href="#fornecedor">Fornecedor</a>
+                        </nav>
+                        <a class="nav-link" href="#entregas">ENTREGA</a>
+                        <nav class="nav navbar-pills flex-column">
+                            <a class="nav-link ml-3" href="#retirada">Tipo de Retirada</a>
+                            <a class="nav-link ml-3" href="#transporte">Transportadora</a>
+                        </nav>
+                    </nav>
+                </nav>
+            </div>
+            <div id="nav-spy-content" class="m-0 col-sm-6 col-md-8 col-lg-9">
+                <div data-spy="scroll" data-target="#navbar_vertical" data-offset="0" class="scroll-spy">
+
+                    <h4 id="clientes">CLIENTES</h4>
+                    <p class="ml-3">
+                        Atendemos tanto clientes físicos quanto clientes jurídicos. O contato com
+                        os vendedores pode ser  pelos seguintes meios de comunicação: atendimento
+                        presencial, chamada de voz e ou e-mail.
+                    </p>
+                    <p class="ml-3">
+                        Também abrimos a possíbilidade de fechamento de parcerias com clientes jurídicos
+                        e ou encomendas promagadas à clientes físicos. Em caso de mais dúvidas vide
+                        secção 'Venda'.
+                    </p>
+
+                    <h4 id="vendas">VENDAS</h4>
+                    <h6 id="atac_varej" class="ml-3">Vendas por Atacado ou Varejo</h6>
+                    <p class="ml-3">
+                        Realizamos as vendas pelos dois meios de comércio (atacado e varejo) e
+                        estas não são researvadas exclusivas ao tipo do cliente (físico ou jurídico).
+                        Dessa forma, fica livre a escolha pelo cliente em qual modalidade é preferivel
+                        a emissão do pedido.
+                    </p>
+                    <p class="ml-3">
+                        Adendo: Para ser congitada a possíbilidade atacado, a quantidade de produtos do
+                        mesmo tipo deve ser superior a 6 unidades/pacotes.
+                    </p>
+                    <h6 id="vfisica" class="ml-3">Venda Fisica</h6>
+                    <p class="ml-3">
+                        Para adiquirir um dos nossos produtos por meio de venda fisica (cliente presente
+                        junto ao vendedor), o cliente deve dirigir-se ao balcão de atendimentos da Fitex ou
+                        realizar sua compra através de uma de nossas revendedoras parceiras autorizadas.
+                    </p>
+                    <p class="ml-3">
+                        Adendo: Atualmente possuímos empresas parceiras na cidade de Sorocaba e Dracena
+                    </p>
+                    <ul class="ml-3">
+                        <li>Calha Sul: Loja de Materias de Construção - Sorocaba</li>
+                        <li>Liberdade: Comercio e Indústria Gráfica - Sorocaba</li>
+                        <li>Garound: Transportes e Mudanças  - Dracena</li>
+                    </ul>
+                    <h6 id="encomenda" class="ml-3">Encomenda e Parceria</h6>
+                    <p class="ml-3">
+                        Também possíbilitamos a oportunidade de fechar parcerias com clientes jurídicos.
+                        Dessa forma, poderão ser autorizadas para clientes jurídicos
+                    </p>
+                    <ul class="ml-3">
+                        <li>Revenda autorizada de nossos produtos</li>
+                        <li>Distribuição de uma lista de produtos mensais</li>
+                        <li>Solicitação de produtos personalizados</li>
+                    </ul>
+                    <p class="ml-3">
+                        Enquanto que clientes físicos poderão, através de acordos, encomendar produtos
+                        personalizados (impressão) e solicitar entrega programada em até 2 meses.
+                    </p>
+
+                    <h4 id="produtos">PRODUTOS</h4>
+                    <h6 id="troca" class="ml-3">Troca e Devoluções</h6>
+                    <p class="ml-3">
+                        Para todas as trocas e devoluções é necessário registrar a solicitação junto
+                        à Central, através dos veículos de comunicação:
+                    </p>
+                    <ul class="ml-3">
+                        <li>Telefone: (15) 9999-9999</li>
+                        <li>E-mail: contato.atendimento@fitex.com</li>
+                        <li>Balcão de Atendimento em loja física</li>
+                    </ul>
+                    <h6 id="assistencia" class="ml-3">Assistência Técnica</h6>
+                    <p class="ml-3">
+                        Não adicionamos garantia ao comércio de nossos produtos. Entretanto, se for
+                        constatato que o produto foi entregue com defeito de fábrica fornemos a troca
+                        do produto defeituso por um novo.
+                    </p>
+                    <h6 id="fornecedor" class="ml-3">Como se tornar um fornecedor</h6>
+                    <p class="ml-3">
+                        Encaminhe sua proposta à nossa área comercial, ela será analisada e, havendo
+                        interesse, entraremos em contato com você.
+
+                        E-mail: contato.fornecedores@fitex.com
+                    </p>
+
+                    <h4 id="entregas">ENTREGAS</h4>
+                    <h6 id="retirada" class="ml-3">Tipo de Retirada</h6>
+                    <p class="ml-3">
+                        Os pedidos podem ser retirados tanto em loja quanto por transportadora parceira
+                        própria da Fitex.
+                        Vale lembrar que, em caso de compras não presenciais, é necessário informar o
+                        vendedor da preferência da retirada em loja. Caso contrário o pedido será entregue
+                        por transportadora.
+                    </p>
+                    <p class="ml-3">
+                        Não fornecemos possibilidade de envio postal.
+                    </p>
+                    <p class="ml-3">
+                        Adendo: Caso o pedido não seja retirado no prazo máximo de 1 mês esse será cancelado.
+                    </p>
+                    <h6 id="transporte" class="ml-3">Envio Transportadora</h6>
+                    <p class="ml-3">
+                        As entregas por transportadora podem ser agendadas e são realizadas de segunda à sabado,
+                        sendo entregues em duas faixas de horário:
+                    </p>
+                    <ul class="ml-3">
+                        <li>8:00h às 12:00h</li>
+                        <li>13:00h às 18:00h</li>
+                    </ul>
+                    <div class="my-5">
+                        <p class="my-5 text-center text-muted">
+                            <small>equipe de atendimento ao cliente fitex</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contato -->
+<div id="contact" class="p-5">
+    <div class="content mt-5 pb-4">
+        <div class="row">
+            <div class="col-12 text-center my-2">
+                <h2 id="title-contact"><img src="~/image/icon/32px/paper-plane.png" style="padding-right: 1%" />CONTATO</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-2">
+            <div class="col-sm-12 col-md-10 col-lg-8">
+                <div>
+                    <div class="form-row m-1">
+                        <div class="form-group col-sm-6">
+                            <label for="inputFirstName">Seu Nome</label>
+                            <input type="text" class="form-control" id="inputFistName" placeholder="Nome">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="inputLastName">Seu Sobrenome</label>
+                            <input type="text" class="form-control" id="inputLastName" placeholder="Sobrenome">
+                        </div>
+                    </div>
+                    <div class="form-row m-1">
+                        <div class="form-group col-sm-6">
+                            <label for="inputCity">Sua Cidade</label>
+                            <input type="text" class="form-control" id="inputCity" placeholder="Cidade/UF">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="inputEmail">Seu E-mail</label>
+                            <input type="text" class="form-control" id="inputEmail" placeholder="E-mail">
+                        </div>
+                    </div>
+                    <div class="form-row m-1">
+                        <div class="form-group col-sm-12">
+                            <label for="inputSubject">Assunto da Mensagem</label>
+                            <input type="text" class="form-control" id="inputSubject" placeholder="Assunto">
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label for="inputMesage">Mensagem</label>
+                            <textarea type="text" rows="5" class="form-control" id="inputMesage" placeholder="Escreva algo aqui..."></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row m-1">
+                        <div class="text-right col-sm-12 pb-3">
+                            <button class="btn btn-light" data-toggle="modal" data-target="#contato">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div id="footer" class="bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <h5 class="pt-3">Menu Tópicos Site</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item bg-light"><a href="#navbar">Home</a></li>
+                    <li class="list-group-item bg-light"><a href="#about">Sobre</a></li>
+                    <li class="list-group-item bg-light"><a href="#product">Produtos</a></li>
+                    <li class="list-group-item bg-light"><a href="#faq">FAQ</a></li>
+                    <li class="list-group-item bg-light"><a href="#contact">Contato</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-7 pl-5">
+                <h5 class="pt-3">Nosso Contato</h5>
+                <small><img src="~/image/icon/16px/map.png" style="padding-right: 1%" />Endereço Central</small>
+                <p>
+                    <small>
+                        FITEX-INDÚSTRIA E COMÉRCIO<br>
+                        Rua Duque de Caxias - Jardim Europa,<br>
+                        Dracena - SP, 17900-000
+                    </small>
+                </p>
+                <small><img src="~/image/icon/16px/envelope.png" style="padding-right: 1%" />E-mail</small>
+                <p>
+                    <small>
+                        Atendimento SAC: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp contato.atendimento@fitex.com<br>
+                        Atendimento Parcerias: &nbsp contato.fornecedores@fitex.com
+                    </small>
+                </p>
+                <small><img src="~/image/icon/16px/contact.png" style="padding-right: 1%" />Telefone: (15) 9999-9999</small>
+            </div>
+            <div class="col-sm-2">
+                <div class="row">
+                    <div class="col-sm my-5 text-center">
+                        <small>&copy; Copyright 2019, CT. Concept TI, Software Development</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL DE CONTATO SUCESSO-->
+<div class="modal fade" id="contato" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center" id="myModalLabel">Mensagem Enviada!</h4>
+                <button type="button" class="close ml-auto" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body text-center">
+                <p>Obrigada, por entrar em contato!</p>
+                <p>Responderemos o seu e-mail o quanto antes.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">OK</button>
+                <button type="button" class="btn btn-sm" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>

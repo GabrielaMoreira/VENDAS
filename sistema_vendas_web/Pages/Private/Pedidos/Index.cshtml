@@ -1,0 +1,301 @@
+﻿@page
+@model sistema_vendas_web.Pages.Private.Pedidos.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+    <link href="~/css/style-cadastro-pedido.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="col-sm-12 mt-2">
+    <div class="row">
+        <div class="col-1 col-sm-8">
+            <h6>Pedido</h6>
+        </div>
+        <div class="col2 col-sm-4">
+            <form method="POST" action="#" enctype="multipart/form-data">
+                <div class="input-file" style="margin-top: -25px;">
+                    <div class="input-group input-group-sm">
+                        <input id="nomeArquivo" type="text" class="form-control" placeholder='Escolha um arquivo...' readonly />
+                        <div class="input-group-append">
+                            <button class="btn btn-primary btn-choose" type="button">Importar</button>
+                            <button class="btn btn-outline-danger btn-reset" type="button">x</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<hr />
+
+<form asp-page="./Index" method="get" class="mt-5 mb-5">
+    <div class="col-sm-12">
+        <div class="input-group input-group-sm">
+            <input type="text" asp-for="SearchString" class="form-control col-sm-9" placeholder="Buscar pelo numero do pedido..." />
+            <select asp-for="Status" class="form-control col-sm-1">
+                <option value="" selected disabled>Status</option>
+                <option value="">Todos</option>
+                <option value="Ativo">Ativo</option>
+                <option value="Cancelado">Cancelado</option>
+                <option value="Importado">Importado</option>
+            </select>
+            <div class="input-group-append">
+                <input type="submit" value="Pesquisar" class="btn btn-sm btn-primary" style="width:110px" />
+                <a asp-page="Create" class="btn btn-sm btn-primary ml-5" style="width:110px">Novo Pedido</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<div style="height: 350px; overflow-y: scroll;">
+    <table class="table table-hover">
+        <thead>
+            <tr class="bg-light">
+                <th>
+                    @Html.DisplayNameFor(model => model.Pedido[0].COD_PEDIDO)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pedido[0].DATA_EMISSAO)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pedido[0].TOTAL)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pedido[0].TIPO_CLIENTE)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pedido[0].COD_CLIENTE)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pedido[0].COD_USUARIO)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pedido[0].STATUS)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Pedido)
+            {
+
+                var pedidomodal = "#Modal" + item.COD_PEDIDO;
+                var pedidoid = "Modal" + item.COD_PEDIDO;
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.COD_PEDIDO)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DATA_EMISSAO)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TOTAL)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TIPO_CLIENTE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.COD_CLIENTE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.COD_USUARIO)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.STATUS)
+                    </td>
+                    <td>
+
+                        @if (@item.STATUS == "Ativo" || @item.STATUS == "Importado")
+                        {
+                            <a asp-page="./Edit" asp-route-id="@item.COD_PEDIDO" class="btn btn-sm btn-outline-secondary disabled" style="width:68px">Editar</a>
+                            <a asp-page="./Details" asp-route-id="@item.COD_PEDIDO" class="btn btn-sm btn-outline-primary" style="width:68px">Detalhar</a>
+                            <button type="button" class="btn btn-sm btn-outline-primary" style="width:68px" data-toggle="modal" data-target="@pedidomodal">Cancelar</button>
+
+                            <!-- MODAL DE CONFIRMAÇÃO -->
+                            <div class="modal fade" id="@pedidoid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title text-center" id="myModalLabel">Confirmar Cancelamento</h4>
+                                            <button type="button" class="close ml-auto" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                            <p>Você tem certeza que deseja cancelar o pedido:</p>
+                                            <p>@item.COD_PEDIDO - @item.DATA_EMISSAO</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a asp-page-handler="Cancelar" asp-route-Id="@item.COD_PEDIDO" id="deleteBtn" class="btn btn-sm bg-danger mr-1">Cancelar</a>
+                                            <button type="button" class="btn btn-sm" data-dismiss="modal">Fechar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                        else
+                        {
+                            <a asp-page="./Edit" asp-route-id="@item.COD_PEDIDO" class="btn btn-sm btn-outline-secondary disabled" style="width:68px">Editar</a>
+                            <a asp-page="./Details" asp-route-id="@item.COD_PEDIDO" class="btn btn-sm btn-outline-primary" style="width:68px">Detalhar</a>
+                            <button type="button" class="btn btn-sm btn-outline-secondary disabled" style="width:68px" data-toggle="modal" data-target="@pedidomodal">Ativar</button>
+
+                            <!-- MODAL DE CONFIRMAÇÃO -->
+                            <div class="modal fade" id="@pedidoid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title text-center" id="myModalLabel">Confirmar Ativamento</h4>
+                                            <button type="button" class="close ml-auto" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                            <p>Você tem certeza que deseja ativar o pedido:</p>
+                                            <p>@item.COD_PEDIDO - @item.DATA_EMISSAO</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a asp-page-handler="Ativar" asp-route-Id="@item.COD_PEDIDO" id="deleteBtn" class="btn btn-sm bg-danger mr-1">Ativar</a>
+                                            <button type="button" class="btn btn-sm" data-dismiss="modal">Fechar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<!-- MODAL DE PEDIDO CSV SUCESSO-->
+<div class="modal fade" id="pedidoCSV_Sucesso" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center" id="myModalLabel">Importação Pedido</h4>
+                <button type="button" class="close ml-auto" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body text-center">
+                <p>O Pedido foi importado com sucesso!</p>
+                <p id="codigoCSV"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">OK</button>
+                <button type="button" class="btn btn-sm" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL DE PEDIDO CSV ERROR-->
+<div class="modal fade" id="pedidoCSV_Error" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center" id="myModalLabel">Importação Pedido</h4>
+                <button type="button" class="close ml-auto" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body text-center">
+                <p>Houve uma falha na ação e o pedido não pode ser importado!</p>
+                <p>Tente novamente mais tarde ou contacte o suporte</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">OK</button>
+                <button type="button" class="btn btn-sm" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL DE PEDIDO CSV SEM ESTOQUE-->
+<div class="modal fade" id="pedidoCSV_Estoque" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center" id="myModalLabel">Importação Pedido</h4>
+                <button type="button" class="close ml-auto" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body text-center">
+                <p>Não há estoque suficiente para um dos produtos solicitados!</p>
+                <p>Por favor, verifique o pedido com o cliente.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">OK</button>
+                <button type="button" class="btn btn-sm" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+
+        function bs_input_file() {
+            $(".input-file").before(
+                function () {
+                    if (!$(this).prev().hasClass('input-ghost')) {
+                        var element = $("<input type='file' class='input-ghost' style='visibility:hidden; height:0;'>");
+                        element.attr("name", $(this).attr("name"));
+                        element.change(function () {
+                            element.next(element).find('input').val((element.val()).split('\\').pop());
+                        });
+                        $(this).find("button.btn-choose").click(function () {
+                            var nomeArquivo = document.getElementById("nomeArquivo").value;
+                            if (nomeArquivo != "") {
+                                $.ajax({
+                                    type: "Get",
+                                    url: "?handler=Importar_Pedido&file=" + nomeArquivo,
+                                    success: function (data) {
+                                        console.log(data);
+                                        document.getElementById("nomeArquivo").value = "";
+                                        if (data == "FALSE") {
+                                            $("#pedidoCSV_Error").modal('show');
+                                        }
+                                        else {
+                                            if (data == "NULL") {
+                                                $("#pedidoCSV_Estoque").modal('show');
+                                            }
+                                            else {
+                                                var time = new Date();
+                                                var hoje = ('0' + time.getDate()).slice(-2) + "/" + ('0' + time.getMonth()).slice(-2) + "/" + time.getFullYear()
+                                                    + " " + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
+                                                $("#codigoCSV").text(data + " - " + hoje);
+                                                $("#pedidoCSV_Sucesso").modal('show');
+                                              
+                                            }
+                                        }
+
+                                    }
+                                })
+                            }
+                        });
+                        $(this).find("button.btn-reset").click(function () {
+                            element.val(null);
+                            $(this).parents(".input-file").find('input').val('');
+                        });
+                        $(this).find('input').css("cursor", "pointer");
+                        $(this).find('input').mousedown(function () {
+                            $(this).parents('.input-file').prev().click();
+                            return false;
+                        });
+                        return element;
+                    }
+                }
+            );
+        }
+        $(function () {
+            bs_input_file();
+        });
+
+
+        $('#pedidoCSV_Sucesso').on('hidden.bs.modal', function () {
+            location.reload();
+        })
+
+        $('#pedidoCSV_Error').on('hidden.bs.modal', function () {
+            location.reload();
+        })
+
+    </script>
+}

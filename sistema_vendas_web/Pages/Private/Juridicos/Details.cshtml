@@ -1,0 +1,123 @@
+﻿@page
+@model sistema_vendas_web.Pages.Private.Juridicos.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_Layout";
+}
+
+<h6 class="mt-2">Consulta Cliente Juridico</h6>
+<hr />
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Juridico.COD_CLIENTE" />
+
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-3">
+                <label asp-for="Juridico.COD_CLIENTE" class="control-label"></label>
+                <input asp-for="Juridico.COD_CLIENTE" class="form-control" disabled />
+                <span asp-validation-for="Juridico.COD_CLIENTE" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-2 ml-auto">
+                <label asp-for="Juridico.DATA_CADASTRO" class="control-label"></label>
+                <input asp-for="Juridico.DATA_CADASTRO" class="form-control" disabled />
+                <span asp-validation-for="Juridico.DATA_CADASTRO" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-6">
+                <label asp-for="Juridico.RAZAO_SOCIAL" class="control-label"></label>
+                <input asp-for="Juridico.RAZAO_SOCIAL" class="form-control" disabled />
+                <span asp-validation-for="Juridico.RAZAO_SOCIAL" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-3">
+                <label asp-for="Juridico.CNPJ" class="control-label"></label>
+                <input asp-for="Juridico.CNPJ" class="form-control" disabled />
+                <span asp-validation-for="Juridico.CNPJ" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-3">
+                <label asp-for="Juridico.NOME_CONTATO" class="control-label"></label>
+                <input asp-for="Juridico.NOME_CONTATO" class="form-control" disabled />
+                <span asp-validation-for="Juridico.NOME_CONTATO" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-2">
+                <label asp-for="Juridico.INSCRICAO_ESTADUAL" class="control-label"></label>
+                <input asp-for="Juridico.INSCRICAO_ESTADUAL" class="form-control" disabled />
+                <span asp-validation-for="Juridico.INSCRICAO_ESTADUAL" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-4">
+                <label asp-for="Juridico.EMAIL" class="control-label"></label>
+                <input asp-for="Juridico.EMAIL" class="form-control" disabled />
+                <span asp-validation-for="Juridico.EMAIL" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-3">
+                <label asp-for="Juridico.TELEFONE_1" class="control-label"></label>
+                <input asp-for="Juridico.TELEFONE_1" class="form-control" disabled />
+                <span asp-validation-for="Juridico.TELEFONE_1" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-3">
+                <label asp-for="Juridico.TELEFONE_2" class="control-label"></label>
+                <input asp-for="Juridico.TELEFONE_2" class="form-control" disabled />
+                <span asp-validation-for="Juridico.TELEFONE_2" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-3">
+                <label asp-for="Juridico.CEP" class="control-label"></label>
+                <input asp-for="Juridico.CEP" class="form-control" disabled />
+                <span asp-validation-for="Juridico.CEP" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-9">
+                <label asp-for="Juridico.LOGRADOURO" class="control-label"></label>
+                <input asp-for="Juridico.LOGRADOURO" class="form-control" disabled />
+                <span asp-validation-for="Juridico.LOGRADOURO" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-1">
+                <label asp-for="Juridico.NUMERO" class="control-label"></label>
+                <input asp-for="Juridico.NUMERO" class="form-control" disabled />
+                <span asp-validation-for="Juridico.NUMERO" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-9">
+                <label asp-for="Juridico.BAIRRO" class="control-label"></label>
+                <input asp-for="Juridico.BAIRRO" class="form-control" disabled />
+                <span asp-validation-for="Juridico.BAIRRO" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-2">
+                <label asp-for="Juridico.COMPLEMENTO" class="control-label"></label>
+                <input asp-for="Juridico.COMPLEMENTO" class="form-control" disabled />
+                <span asp-validation-for="Juridico.COMPLEMENTO" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-7">
+                <label asp-for="Juridico.CIDADE" class="control-label"></label>
+                <input asp-for="Juridico.CIDADE" class="form-control" disabled />
+                <span asp-validation-for="Juridico.CIDADE" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-2">
+                <label asp-for="Juridico.UF" class="control-label"></label>
+                <input asp-for="Juridico.UF" class="form-control" disabled />
+                <span asp-validation-for="Juridico.UF" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-3">
+                <label asp-for="Juridico.STATUS" class="control-label"></label>
+                <input asp-for="Juridico.STATUS" class="form-control" disabled />
+                <span asp-validation-for="Juridico.STATUS" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group mt-5">
+        <a asp-page="./Edit" asp-route-id="@Model.Juridico.COD_CLIENTE" class="btn btn-sm btn-outline-primary ml-2" style="width:100px">Editar</a>
+        <a asp-page="./Index" class="btn btn-sm btn-outline-primary ml-2" style="width:100px">Voltar a Lista</a>
+    </div>
+</form>

@@ -1,0 +1,185 @@
+﻿@page
+@model sistema_vendas_web.Pages.Private.Pedidos.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_Layout";
+}
+
+<h6 class="mt-2">Consulta Pedido</h6>
+<hr />
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>    
+
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-3">
+                <label asp-for="Pedido.COD_PEDIDO" class="control-label"></label>
+                <input id="codigo" asp-for="Pedido.COD_PEDIDO" class="form-control" disabled />
+                <span asp-validation-for="Pedido.COD_PEDIDO" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-2 ml-auto">
+                <label asp-for="Pedido.DATA_EMISSAO" class="control-label"></label>
+                <input asp-for="Pedido.DATA_EMISSAO" class="form-control" disabled />
+                <span asp-validation-for="Pedido.DATA_EMISSAO" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-3">
+                <label asp-for="Pedido.TABELA_PRECO" class="control-label"></label>
+                <input asp-for="Pedido.TABELA_PRECO" class="form-control" disabled />
+                <span asp-validation-for="Pedido.TABELA_PRECO" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-3">
+                <label asp-for="Pedido.NATUREZA_OPERACAO" class="control-label"></label>
+                <input asp-for="Pedido.NATUREZA_OPERACAO" class="form-control" disabled />
+                <span asp-validation-for="Pedido.NATUREZA_OPERACAO" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-3">
+                <label asp-for="Pedido.FORMA_PAGAMENTO" class="control-label"></label>
+                <input asp-for="Pedido.FORMA_PAGAMENTO" class="form-control" disabled />
+                <span asp-validation-for="Pedido.FORMA_PAGAMENTO" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-3">
+                <label asp-for="Pedido.QTD_PARCELAS" class="control-label"></label>
+                <input asp-for="Pedido.QTD_PARCELAS" class="form-control" disabled />
+                <span asp-validation-for="Pedido.QTD_PARCELAS" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-3">
+                <label asp-for="Pedido.FORMA_ENTREGA" class="control-label"></label>
+                <input asp-for="Pedido.FORMA_ENTREGA" class="form-control" disabled />
+                <span asp-validation-for="Pedido.FORMA_ENTREGA" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-3">
+                <label asp-for="Pedido.FRETE" class="control-label"></label>
+                <input asp-for="Pedido.FRETE" class="form-control" disabled />
+                <span asp-validation-for="Pedido.FRETE" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-3">
+                <label asp-for="Pedido.STATUS" class="control-label"></label>
+                <input asp-for="Pedido.STATUS" class="form-control" disabled />
+                <span asp-validation-for="Pedido.STATUS" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-3">
+                <label asp-for="Pedido.DESCONTO" class="control-label"></label>
+                <input asp-for="Pedido.DESCONTO" class="form-control" disabled />
+                <span asp-validation-for="Pedido.DESCONTO" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-6">
+                <label asp-for="Pedido.SUB_TOTAL" class="control-label"></label>
+                <input asp-for="Pedido.SUB_TOTAL" class="form-control" disabled />
+                <span asp-validation-for="Pedido.SUB_TOTAL" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-6">
+                <label asp-for="Pedido.TOTAL" class="control-label"></label>
+                <input asp-for="Pedido.TOTAL" class="form-control" disabled />
+                <span asp-validation-for="Pedido.TOTAL" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-6">
+                <label asp-for="Pedido.OBSERVACAO" class="control-label"></label>
+                <input asp-for="Pedido.OBSERVACAO" class="form-control" disabled />
+                <span asp-validation-for="Pedido.OBSERVACAO" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-3">
+                <label asp-for="Pedido.TIPO_CLIENTE" class="control-label"></label>
+                <input asp-for="Pedido.TIPO_CLIENTE" class="form-control" disabled />
+                <span asp-validation-for="Pedido.TIPO_CLIENTE" class="text-danger"></span>
+            </div>
+            <div class="col col1 col-sm-3 mt-auto">
+                <label asp-for="Pedido.COD_CLIENTE" class="control-label"></label>
+                <input asp-for="Pedido.COD_CLIENTE" class="form-control" disabled />
+                <span asp-validation-for="Pedido.COD_CLIENTE" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group mt-5">
+        <button type="button" id="visualizar" class="btn btn-sm btn-outline-warning" style="width:100px">Mostrar Itens</button>
+        <a asp-page="./Index" class="btn btn-sm btn-outline-primary ml-2" style="width:100px">Voltar a Lista</a>
+    </div>
+    <div id="produtos" style="display: none">
+
+        <div class="mt-5">
+            <h6>Itens do Pedido</h6>
+        </div>
+        <hr />
+        <div style="height: 300px; overflow-y: scroll;" class="mt-5">
+            <table id="gridProduto" class="table table-hover">
+                <thead>
+                    <tr class="bg-light">
+                        <th>
+                            COD.
+                        </th>
+                        <th>
+                            NOME PRODUTO
+                        </th>
+                        <th>
+                            PREÇO UNIT.
+                        </th>
+                        <th>
+                            QTD.
+                        </th>
+                        <th>
+                            TOTAL
+                        </th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</form>
+@section Scripts{
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <link rel="stylesheet" href="~/js/code_jquery.css">
+    <script src="~/js/code_jquery.js"></script>
+    <script src="~/js/code_jquery2.js"></script>
+    <script>
+
+        /*RETORNAR ITEMS DO PEDIDO*/
+        $(document).ready(function () {
+            $("#visualizar").click(function () {
+                var data = document.getElementById("codigo").value;
+                $.ajax({
+                    type: "Get",
+                    url: "?handler=Visualizar_ItemPedido&codigo=" + data,
+                    success: function (data) {                        
+                        var json = $.parseJSON(data);
+                        
+                        if (document.getElementById("produtos").style.display == "none") {
+                            document.getElementById("produtos").style.display = "block";
+                            for (var cont = 0; cont < json.length; cont++) {
+
+                                var codigo = json[cont].codigo_produto;
+                                var nome = json[cont].descricao;
+                                var precoUnitario = json[cont].preco_unitario;
+                                var quantidade = json[cont].quantidade;
+                                var total = json[cont].total;
+
+                                $('#gridProduto tbody').append('<tr id="' + codigo + '">' +
+                                    '<td>' + codigo + '</td>' +
+                                    '<td>' + nome + '</td>' +
+                                    '<td>' + precoUnitario + '</td>' +
+                                    '<td>' + quantidade + '</td>' +
+                                    '<td>' + total + '</td>' +
+                                    '</tr>');
+                            }
+                        }
+                    }
+                })
+            })
+        });
+
+    </script>
+}

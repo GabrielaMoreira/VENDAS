@@ -1,0 +1,52 @@
+﻿@page
+@model sistema_vendas_web.Pages.Private.AlterarSenha.IndexModel
+@using Microsoft.AspNetCore.Http;
+@{
+    ViewData["Title"] = "Redefinir Senha";
+}
+
+<div class="mt-2">
+    <h6>Alterar Senha</h6>
+</div>
+<hr />
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-2">
+                <label class="control-label">CODIGO</label>
+                <input asp-for="Codigo" value="@HttpContext.Session.GetString("_ID")" class="form-control" readonly />
+            </div>
+            <div class="col col1 col-sm-5">
+                <label class="control-label">NOME</label>
+                <input value="@HttpContext.Session.GetString("_Name")" class="form-control" readonly />
+            </div>
+            <div class="col col1 col-sm-5">
+                <label class="control-label">LOGIN</label>
+                <input value="@HttpContext.Session.GetString("_Login")" class="form-control" readonly />
+            </div>
+        </div>
+    </div>
+    <br /><br />
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col2 col-sm-6">
+                <label class="control-label">SENHA ANTIGA</label>
+                <input asp-for="SenhaAntiga" type="password" class="form-control" />
+            </div>
+            <div class="col col2 col-sm-6">
+                <label class="control-label">NOVA SENHA</label>
+                <input asp-for="SenhaNova" type="password" class="form-control" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group mt-5">
+        <input type="submit" value="Salvar" class="btn btn-sm btn btn-primary" style="width:100px" />
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

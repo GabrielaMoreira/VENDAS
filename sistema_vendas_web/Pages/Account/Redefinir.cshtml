@@ -1,0 +1,80 @@
+﻿@page
+@model sistema_vendas_web.Pages.Account.RedefinirModel
+@{
+    ViewData["Title"] = "Redefinir";
+    Layout = "";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <!-- DESCRIPTION -->
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="sales web software developed as graduation final work">
+    <meta name="author" content="gabriela_moreira, ariane_lima, amanda_carvalheiro">
+    <meta name="keywords" content="fitex, tape, crm, web software">
+
+    <!-- META TAGS -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- LINKS -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/images/timbre/icon.ico" />
+    <link rel="stylesheet" href="~/bootstrap/bootstrap.css" asp-append-version="true" />
+    <link rel="stylesheet" type="text/css" href="~/css/form-logar.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/js/maxcdn.css">
+
+    <!-- SCRIPT -->
+    <script src="~/js/ajax_google.js"></script>
+    <script src="~/js/maxcdn.js"></script>
+
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="form-signin">
+            <hr />
+            <div asp-validation-summary="All"></div>
+            <h3 class="text-center">Redefinição de senha</h3>
+            <hr />
+
+            <h4 class="text-center mb-4">Informe e-mail para solicitar uma nova senha!</h4>
+            <input id="email" type="text" class="form-control mt-3 mb-4" placeholder="E-mail" required="" autofocus="" />
+            <span></span>
+            <button id="btnEnviar" class="btn btn-lg btn-block mt-3" style="background-color:#007bff; color:white;">Enviar</button>
+        </div>
+    </div>
+
+
+    <!-- MODAL DE SENHA ENVIADA -->
+    <div class="modal fade" id="senhaEnviada" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-center" id="myModalLabel">Redefinição de Senha</h4>
+                    <button type="button" class="close ml-auto" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Uma senha provisória foi encaminhado ao seu e-mail com sucesso!</p>
+                    <p>Por favor, verifique sua caixa de entrada.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm" data-dismiss="modal" style="background-color:#007bff; color:white;">OK</button>
+                    <button type="button" class="btn btn-sm" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#btnEnviar").click(function () {
+                $("#senhaEnviada").modal();
+            });
+        });
+    </script>
+
+
+</body>
+</html>

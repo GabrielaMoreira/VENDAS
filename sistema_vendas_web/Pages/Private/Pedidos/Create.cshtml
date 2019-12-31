@@ -1,0 +1,539 @@
+﻿@page
+@model sistema_vendas_web.Pages.Private.Pedidos.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_Layout";
+}
+
+
+<div class="mt-2">
+    <h6>Novo Pedido</h6>
+</div>
+<hr />
+
+<form method="post">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Pedido.STATUS" value="Ativo" />
+
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-3">
+                <label asp-for="Pedido.TABELA_PRECO" class="control-label"></label>
+                <select asp-for="Pedido.TABELA_PRECO" class="form-control" id="tabelaPreco">
+                    <option value="" selected disabled>Selecione</option>
+                    <option value="Atacado">Atacado</option>
+                    <option value="Varejo">Varejo</option>
+                </select>
+                <span asp-validation-for="Pedido.TABELA_PRECO" class="text-danger"></span>
+            </div>
+            <div class="col col2 col-sm-3">
+                <label asp-for="Pedido.NATUREZA_OPERACAO" class="control-label"></label>
+                <select asp-for="Pedido.NATUREZA_OPERACAO" class="form-control">
+                    <option value="" selected disabled>Selecione</option>
+                    <option value="Venda">Venda</option>
+                    <option value="Remessa">Remessa</option>
+                </select>
+                <span asp-validation-for="Pedido.NATUREZA_OPERACAO" class="text-danger"></span>
+            </div>
+            <div class="col col3 col-sm-3">
+                <label asp-for="Pedido.FORMA_PAGAMENTO" class="control-label"></label>
+                <select asp-for="Pedido.FORMA_PAGAMENTO" class="form-control">
+                    <option value="" selected disabled>Selecione</option>
+                    <option value="Vista">Vista</option>
+                    <!--<option value="Prazo">Prazo</option>-->
+                </select>
+                <span asp-validation-for="Pedido.FORMA_PAGAMENTO" class="text-danger"></span>
+            </div>
+            <div class="col col4 col-sm-3">
+                <label asp-for="Pedido.QTD_PARCELAS" class="control-label"></label>
+                <select asp-for="Pedido.QTD_PARCELAS" class="form-control">
+                    <option value="" selected disabled>Selecione</option>
+                    <option value="1">1 s/juros</option>
+                </select>
+                <span asp-validation-for="Pedido.QTD_PARCELAS" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-3">
+                <label asp-for="Pedido.FORMA_ENTREGA" class="control-label"></label>
+                <select asp-for="Pedido.FORMA_ENTREGA" class="form-control">
+                    <option value="" selected disabled>Selecione</option>
+                    <option value="Retirada">Retirada</option>
+                    <option value="Transportadora">Transportadora</option>
+                </select>
+                <span asp-validation-for="Pedido.FORMA_ENTREGA" class="text-danger"></span>
+            </div>
+            <div class="col col2 col-sm-3">
+                <label asp-for="Pedido.FRETE" class="control-label"></label>
+                <select asp-for="Pedido.FRETE" class="form-control">
+                    <option value="" selected disabled>Selecione</option>
+                    <option value="Sem">Sem frete</option>
+                    <option value="Conta">Por conta</option>
+                </select>
+                <span asp-validation-for="Pedido.FRETE" class="text-danger"></span>
+            </div>
+            <div class="col col3 col-sm-3">
+                <label asp-for="Pedido.TIPO_CLIENTE" class="control-label"></label>
+                <select asp-for="Pedido.TIPO_CLIENTE" class="form-control" id="tipoCliente">
+                    <option value="" selected disabled>Selecione</option>
+                    <option value="Fisico">Fisico</option>
+                    <option value="Juridico">Juridico</option>
+                </select>
+                <span asp-validation-for="Pedido.TIPO_CLIENTE" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-3 disabled">
+                <label class="control-label">CNPJ/CPF CLIENTE</label>
+                <input id="searchCNPJ" type="text" name="value" class="form-control" placeholder="" />
+            </div>
+            <div class="col col2 col-sm-3">
+                <label class="control-label">COD. CLIENTE</label>
+                <input asp-for="Pedido.COD_CLIENTE" id="codigoCliente" class="form-control" readonly />
+            </div>
+            <div class="col col3 col-sm-6">
+                <label class="control-label">NOME CLIENTE</label>
+                <div class="input-group">
+                    <input id="nomeCliente" class="form-control" readonly />
+                    <div class="input-group-append">
+                        <button type="button" onclick="LimparCliente();" class="btn btn-outline-warning" style="width:110px">Limpar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5">
+        <h6>Produtos</h6>
+    </div>
+    <hr />
+
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-1">
+                <label class="control-label">COD.</label>
+                <input id="codigoProduto" class="form-control" readonly />
+            </div>
+            <div class="col col2 col-sm-10">
+                <label class="control-label">NOME PRODUTO</label>
+                <label class="control-label" style="margin-left:44%">QUANTIDADE</label>
+                <div class="input-group">
+                    <input id="searchNomeProduto" type="text" name="value" class="form-control" placeholder="Buscar pelo nome do produto..." />
+                    <div class="input-group-append">
+                        <input id="quantidadeProduto" type="text" class="form-control" style="width: 150px;" />
+                        <button type="button" id="AddProduto" class="btn btn-sm btn-primary" style="width:110px">Adicionar</button>
+                        <button type="button" onclick="LimparProduto();" class="btn btn-sm btn-outline-warning ml-2" style="width:110px">Limpar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CAMPOS FANTASMAS -->
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-7">
+                <input type="hidden" id="qtdEstoqueProduto" class="form-control" />
+            </div>
+            <div class="col col col-sm-4">
+                <input type="hidden" id="valorUnitarioProduto" class="form-control" />
+                <div id="mensagem" style="color: #dc3545;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div style="height: 300px; overflow-y: scroll;" class="mt-5">
+        <table id="gridProduto" class="table table-hover">
+            <thead>
+                <tr class="bg-light">
+                    <th>
+                        COD.
+                    </th>
+                    <th>
+                        NOME PRODUTO
+                    </th>
+                    <th>
+                        PREÇO UNIT.
+                    </th>
+                    <th>
+                        QTD.
+                    </th>
+                    <th>
+                        TOTAL
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div class="col col-sm-12 mt-4">
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-4">
+                <label asp-for="Pedido.SUB_TOTAL" class="control-label"></label>
+                <input id="subTotal" asp-for="subtotal" class="form-control" readonly value="0,00" />
+                <span asp-validation-for="Pedido.SUB_TOTAL" class="text-danger"></span>
+            </div>
+            <div class="col col2 col-sm-4">
+                <label asp-for="Pedido.DESCONTO" class="control-label"></label>
+                <input id="desconto" asp-for="desconto" class="form-control" />
+                <span asp-validation-for="Pedido.DESCONTO" class="text-danger"></span>
+            </div>
+            <div class="col col3 col-sm-4">
+                <label asp-for="Pedido.TOTAL" onfocus="desconto();" class="control-label"></label>
+                <input id="total" value="0,00" asp-for="total" class="form-control" readonly />
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col col-sm-12 mt-2">
+        <label asp-for="Pedido.OBSERVACAO" class="control-label"></label>
+        <textarea rows="3" asp-for="Pedido.OBSERVACAO" class="form-control"></textarea>
+        <span asp-validation-for="Pedido.OBSERVACAO" class="text-danger"></span>
+    </div>
+
+
+    <!-- Item Pedido -->
+    <input type="hidden" asp-for="item" id="lista" />
+    <input type="hidden" asp-for="Pedido.flag_item" id="flag" />
+
+    <div class="form-group mt-5">
+        <input onclick="Lista_ItemPedido();" type="submit" value="Salvar" class="btn btn-sm btn btn-primary" style="width:100px" />
+        <a asp-page="Index" class="btn btn-sm btn-outline-primary ml-2" style="width:100px">Voltar a Lista</a>
+    </div>
+
+</form>
+
+
+<!-- MODAL DE PEDIDO SEM ITENS -->
+<div class="modal fade" id="semItem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center" id="myModalLabel">Atenção</h4>
+                <button type="button" class="close ml-auto" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body text-center">
+                <p>Informe ao menos um item para efetuar o pedido!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">Voltar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL DE PEDIDO SEM ESTOQUE-->
+<div class="modal fade" id="semEstoque" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center" id="myModalLabel">Atenção</h4>
+                <button type="button" class="close ml-auto" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body text-center">
+                <p>Não há estoque suficiente para o produto solicitado!</p>
+                <p>Por favor, verifique o pedido com o cliente.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">OK</button>
+                <button type="button" class="btn btn-sm" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL DE PEDIDO SEM TABELA PRECO-->
+<div class="modal fade" id="semTabelaPreco" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center" id="myModalLabel">Atenção</h4>
+                <button type="button" class="close ml-auto" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body text-center">
+                <p>A ação não pode ser finalizada com sucesso!</p>
+                <p>Por favor, informe a tabela de preço.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">OK</button>
+                <button type="button" class="btn btn-sm" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <link rel="stylesheet" href="~/js/code_jquery.css">
+    <script src="~/js/code_jquery.js"></script>
+    <script src="~/js/code_jquery2.js"></script>
+    <script>
+
+            $(function () {
+            $("#teste").autocomplete({
+                source: '@Url.Page("Create", "AutoComplete_Cliente")'
+                });
+            });
+
+
+            /*FUNÇÕES AUTOCOMPLETAR CLIENTE*/
+            $(function () {
+            $("#searchCNPJ").autocomplete({
+                source: '@Url.Page("Create", "AutoComplete_Cliente")'
+                });
+            });
+            $('#searchCNPJ').on('autocompletechange change', function () {
+                var data = this.value;
+                var type = document.getElementById("tipoCliente").value;
+                $.ajax({
+                    type: "Get",
+                    url: "?handler=Preencher_NomeCliente&name=" + data + "&type=" + type,
+                    success: function (data) {
+                        $('#nomeCliente').val(data);
+                    }
+                })
+            }).change();
+            $('#searchCNPJ').on('autocompletechange change', function () {
+                var data = this.value;
+                var type = document.getElementById("tipoCliente").value;
+                $.ajax({
+                    type: "Get",
+                    url: "?handler=Preencher_CodigoCliente&name=" + data + "&type=" + type,
+                    success: function (data) {
+                        $('#codigoCliente').val(data);
+                    }
+                })
+            }).change();
+
+            /*FUNÇÕES AUTOCOMPLETAR PRODUTO*/
+            $(function () {
+                $("#searchNomeProduto").autocomplete({
+                    source: '@Url.Page("Create", "AutoComplete_NomeProduto")'
+                });
+            });
+            $('#searchNomeProduto').on('autocompletechange change', function () {
+                var data = this.value;
+                $.ajax({
+                    type: "Get",
+                    url: "?handler=Preencher_CodigoProduto&name=" + data,
+                    success: function (data) {
+                        $('#codigoProduto').val(data);
+                    }
+                })
+            }).change();
+            $('#searchNomeProduto').on('autocompletechange change', function () {
+                var data = this.value;
+                $.ajax({
+                    type: "Get",
+                    url: "?handler=Preencher_EstoqueProduto&name=" + data,
+                    success: function (data) {
+                        $('#qtdEstoqueProduto').val(data);
+                    }
+                })
+            }).change();
+            $('#searchNomeProduto').on('autocompletechange change', function () {
+                var data = this.value;
+                $.ajax({
+                    type: "Get",
+                    url: "?handler=Preencher_UnitarioProduto&name=" + data,
+                    success: function (data) {
+                        $('#valorUnitarioProduto').val(data);
+                    }
+                })
+            }).change();
+
+            /*FUNÇÕES LIMPAR CAMPOS*/
+            function LimparProduto() {
+                document.getElementById("codigoProduto").value = "";
+                document.getElementById("searchNomeProduto").value = "";
+                document.getElementById("quantidadeProduto").value = "";
+            };
+            function LimparCliente() {
+                document.getElementById("searchCNPJ").value = "";
+                document.getElementById("codigoCliente").value = "";
+                document.getElementById("nomeCliente").value = "";
+            };
+
+            /*ADICIONAR LINHAS NA GRID PRODUTO*/
+            $(document).ready(function () {
+                $("#AddProduto").click(function () {
+                    var quantidade = document.getElementById("quantidadeProduto").value;
+                    var estoque = document.getElementById("qtdEstoqueProduto").value;
+                    var cont = 0;
+                    var lista_apoio = [];
+
+                    if (quantidade.length == 0) {
+                        /*$("#mensagem").html("Informe uma quantidade válida!");*/
+                        $("#quantidadeProduto").focus();
+                    }
+                    else {
+
+                        if (parseInt(estoque) < parseInt(quantidade)) {
+                            jQuery.noConflict();
+                            $('#semEstoque').modal('show');
+                            document.getElementById("qtdEstoqueProduto").value = "";
+                            document.getElementById("codigoProduto").value = "";
+                            document.getElementById("searchNomeProduto").value = "";
+                            document.getElementById("quantidadeProduto").value = "";
+                        }
+                        else {
+                            var tabelaPreco = document.getElementById("tabelaPreco").value;
+                            if (tabelaPreco == "") {
+                                jQuery.noConflict();
+                                $('#semTabelaPreco').modal('show');
+                                document.getElementById("qtdEstoqueProduto").value = "";
+                                document.getElementById("codigoProduto").value = "";
+                                document.getElementById("searchNomeProduto").value = "";
+                                document.getElementById("quantidadeProduto").value = "";
+                            }
+                            else {
+                                var codigo = document.getElementById("codigoProduto").value;
+                                var nome = document.getElementById("searchNomeProduto").value;
+                                var precoUnitario = document.getElementById("valorUnitarioProduto").value;
+                                var total = precoUnitario * quantidade;
+                                var subtotal = 0;
+                                total = parseFloat(total.toFixed(2));
+
+                                //adicionar items na grid
+                                $('#gridProduto tbody').append('<tr id="' + codigo + '">' +
+                                    '<td>' + codigo + '</td>' +
+                                    '<td>' + nome + '</td>' +
+                                    '<td>' + precoUnitario +
+                                    '<td>' + quantidade + '</td>' +
+                                    '<td>' + total + '</td>' +
+                                    '<td><button type="button" onclick="DeleteProduto(' + codigo + ');" class="btn btn-sm btn-outline-danger" style="width:68px">Remover</button></td>' +
+                                    '</tr>');
+
+                                //calcular subtotal
+                               $("table#gridProduto tr").each(function() {
+                                    var tableData = $(this).find('td');
+
+                                    if (tableData.length > 0) {
+                                        tableData.each(function () { lista_apoio.push($(this).text()); });
+                                        subtotal += parseFloat(lista_apoio[cont + 4]);
+                                        cont += 6;
+                                     }
+
+                               });
+
+                                $('#subTotal').val(subtotal.toFixed(2));
+                                var desconto = document.getElementById("desconto").value;
+                                if (desconto == "") {
+                                    $('#total').val(subtotal.toFixed(2));
+                                }
+                                else {
+                                    desconto = parseFloat(desconto);
+                                    total = subtotal - desconto;
+                                    $('#total').val(total.toFixed(2));
+                                }
+
+                                if (subtotal > 0) {
+                                    $('#flag').val("S");
+                                } else {
+                                    $('#flag').val("");
+                                }
+
+                            }
+                        }
+                    }
+                    $("#quantidadeProduto").focus();
+                    document.getElementById("codigoProduto").value = "";
+                    document.getElementById("searchNomeProduto").value = "";
+                    document.getElementById("quantidadeProduto").value = "";
+                })
+            });
+
+            // REMOVER LINHAS NA GRID
+            function DeleteProduto(codigo) {
+
+                var subtotal = 0;
+                var cont = 0;
+                var lista_apoio = [];
+
+                //remove item na grid
+                $('#' + codigo + '').remove();
+
+                //calcular subtotal
+                $("table#gridProduto tr").each(function() {
+                    var tableData = $(this).find('td');
+
+                    if (tableData.length > 0) {
+                       tableData.each(function () { lista_apoio.push($(this).text()); });
+                       subtotal += parseFloat(lista_apoio[cont + 4]);
+                       cont += 6;
+                    }
+
+                 });
+
+                $('#subTotal').val(subtotal.toFixed(2));
+                var desconto = document.getElementById("desconto").value;
+                if (desconto == "") {
+                    $('#total').val(subtotal.toFixed(2));
+                }
+                else {
+                    desconto = parseFloat(desconto);
+                    total = subtotal - desconto;
+                    $('#total').val(total.toFixed(2));
+                }
+
+                if (subtotal > 0) {
+                    $('#flag').val("S");
+                } else {
+                    $('#flag').val("");
+                }
+            };
+
+            /* Calculo desconto */
+            $("#desconto").on("change paste keyup", function() {
+                var desconto = document.getElementById("desconto").value;
+                var total = document.getElementById("total").value;
+                var subtotal = document.getElementById("subTotal").value;
+                if (desconto == "") {
+                   $('#total').val(subtotal);
+               }
+               else {
+                   desconto = parseFloat(desconto);
+                   subtotal = parseFloat(subtotal);
+                   total = subtotal - desconto;
+                   $('#total').val(total.toFixed(2));
+               }
+            });
+
+            /*PUSH DA GRID DE ITEMS PEDIDO EM LISTA DE APOIO*/
+            function Lista_ItemPedido(){
+
+                var lista_item = [];
+                var lista_apoio = [];
+                var cont = 0;
+
+                if ($('#total').val() == "0" || $('#total').val() == "0.00" || $('#total').val() == "0,00")
+                {
+                    jQuery.noConflict();
+                    $('#semItem').modal('show');
+                }
+                else
+                {
+                    $("table#gridProduto tr").each(function() {
+                        var tableData = $(this).find('td');
+
+                        if (tableData.length > 0) {
+                            tableData.each(function () { lista_apoio.push($(this).text()); });
+                            lista_item.push(lista_apoio[cont], lista_apoio[cont + 2], lista_apoio[cont + 3], lista_apoio[cont + 4]);
+                            cont += 6;
+                        }
+
+                    });
+                    $('#lista').val(lista_item);
+                }
+            };
+
+    </script>
+}
+

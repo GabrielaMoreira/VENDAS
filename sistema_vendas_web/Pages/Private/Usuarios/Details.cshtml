@@ -1,0 +1,71 @@
+﻿@page
+@model sistema_vendas_web.Pages.Private.Usuarios.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_Layout";
+}
+
+<h6 class="mt-2">Consulta Usuario</h6>
+<hr />
+<form method="post">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Usuario.COD_USUARIO" disabled />
+    
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-4">
+                <label asp-for="Usuario.COD_USUARIO" class="control-label"></label>
+                <input asp-for="Usuario.COD_USUARIO" class="form-control" disabled />
+                <span asp-validation-for="Usuario.COD_USUARIO" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-6">
+                <label asp-for="Usuario.NOME" class="control-label"></label>
+                <input asp-for="Usuario.NOME" class="form-control" disabled />
+                <span asp-validation-for="Usuario.NOME" class="text-danger"></span>
+            </div>
+            <div class="col col2 col-sm-3">
+                <label asp-for="Usuario.CPF" class="control-label"></label>
+                <input asp-for="Usuario.CPF" class="form-control" disabled />
+                <span asp-validation-for="Usuario.CPF" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-3">
+                <label asp-for="Usuario.LOGIN" class="control-label"></label>
+                <input asp-for="Usuario.LOGIN" class="form-control" disabled />
+                <span asp-validation-for="Usuario.LOGIN" class="text-danger"></span>
+            </div>
+            <div class="col col2 col-sm-3">
+                <label asp-for="Usuario.SENHA" class="control-label"></label>
+                <input asp-for="Usuario.SENHA" class="form-control" disabled />
+                <span asp-validation-for="Usuario.SENHA" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-6">
+                <label asp-for="Usuario.EMAIL" class="control-label"></label>
+                <input asp-for="Usuario.EMAIL" class="form-control" disabled />
+                <span asp-validation-for="Usuario.EMAIL" class="text-danger"></span>
+            </div>
+            <div class="col col2 col-sm-3">
+                <label asp-for="Usuario.NIVEL_ACESSO" class="control-label"></label>
+                <input asp-for="Usuario.NIVEL_ACESSO" class="form-control" disabled />
+                <span asp-validation-for="Usuario.NIVEL_ACESSO" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group mt-5">
+        <a asp-page="./Edit" asp-route-id="@Model.Usuario.COD_USUARIO" class="btn btn-sm btn-outline-primary ml-2" style="width:100px">Editar</a>
+        <a asp-page="./Index" class="btn btn-sm btn-outline-primary ml-2" style="width:100px">Voltar a Lista</a>
+    </div>
+</form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

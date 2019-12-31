@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+
+    <!-- DESCRIPTION -->
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="sales web software developed as graduation final work">
+    <meta name="author" content="gabriela_moreira, ariane_lima, amanda_carvalheiro">
+    <meta name="keywords" content="fitex, tape, crm, web software">
+
+    <!-- META TAGS -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="~/images/timbre/icon.ico" type="image/x-icon" />
+
+    <!-- LINKS -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/image/icon/icon.ico" />
+    <link rel="stylesheet" href="~/bootstrap/bootstrap.css" asp-append-version="true">
+    <link rel="stylesheet" type="text/css" href="~/css/style-webpage.css" asp-append-version="true">
+
+</head>
+<body>
+
+    <partial name="_CookieConsentPartial" />
+
+    <!-- Nav Bar -->
+    <nav id="navbar" class="navbar navbar-dark navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="~/image/stamp/full_logo.png" style="width:110px; height:45px">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSite">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active ml-2">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item ml-2">
+                        <a class="nav-link" href="#about">Sobre Nós</a>
+                    </li>
+                    <li class="nav-item ml-2">
+                        <a class="nav-link" href="#product">Produtos</a>
+                    </li>
+                    <li class="nav-item ml-2">
+                        <a class="nav-link" href="#faq">FAQ</a>
+                    </li>
+                    <li class="nav-item ml-2">
+                        <a class="nav-link" href="#contact">Contato</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item ml-2">
+                        <a asp-area="" asp-page="/Account/AutenticacaoUsuario" class="btn btn-outline-light btn-sm button-login" role="button">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- LOAD INDEX -->
+    @RenderBody()
+
+    <!-- JQUERY.JS, POPPER.JS, BOOTSTRAP.JS -->
+    <environment include="Development">
+        <script src="~/node_module/jquery/dist/jquery.js" asp-append-version="true"></script>
+        <script src="~/node_module/popper.js/dist/umd/popper.js" asp-append-version="true"></script>
+        <script src="~/node_module/bootstrap/dist/js/bootstrap.js" asp-append-version="true"></script>
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

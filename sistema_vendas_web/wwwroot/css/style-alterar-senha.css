@@ -1,0 +1,48 @@
+body{
+    background-image: linear-gradient(rgb(232, 232, 232),rgb(25, 78, 96));
+}
+
+
+/** NAVBAR USER **/
+
+
+/** NAVBAR MENU **/
+#navbarMenu{
+    background-color: #229fcb;
+}
+
+#navbarMenu .nav-link{
+    color: white !important;
+}
+
+#navbarMenu .dropdown-menu a{
+    color: black;
+}
+
+#navbarMenu .dropdown-menu a:hover{
+    color: white;
+    background-color: #229fcb;
+}
+
+
+/** FORM SECTION **/
+.form-control:focus {
+  border-color: beige;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(39, 29, 29, 0.46);
+}
+
+#body-center{
+    background-color: white;
+    width: 1000px;
+    height: 1100px;
+    margin: 1% auto;
+}
+
+
+#btn-group-property{
+    margin: 0% auto;
+}
+
+#btn-group-property button{
+    width:120px;
+}

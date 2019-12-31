@@ -1,0 +1,91 @@
+﻿@page
+@model sistema_vendas_web.Pages.Private.Relatorios.RelatorioProdutoModel
+@{
+    ViewData["Title"] = "Relatório Produtos";
+    Layout = "_Layout";
+}
+
+<div class="mt-2">
+    <h6>Relatorio Produto</h6>
+</div>
+<hr />
+
+<form asp-page="./RelatorioProduto" method="get" class="mt-5 mb-5">
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-6">
+                <label>NOME DO PRODUTO</label>
+                <input asp-for="SearchString" class="form-control form-control-sm" />
+            </div>
+            <div class="col col2 col-sm-3">
+                <label>SITUAÇÃO DO PRODUTO</label>
+                <select asp-for="Status" class="form-control form-control-sm">
+                    <option value="" selected disabled>Seleciona</option>
+                    <option value="">Todos</option>
+                    <option value="Ativo">Ativo</option>
+                    <option value="Inativo">Inativo</option>
+                </select>
+            </div>
+            <div class="col col1 col-sm-2 ml-auto">
+                <label>.</label>
+                <input type="submit" value="Gerar Relatório" class="btn btn-sm btn-primary" style="width:180px" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<table class="table table-hover">
+    <thead>
+        <tr class="bg-light">
+            <th>
+                @Html.DisplayNameFor(model => model.Produto[0].COD_PRODUTO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Produto[0].DESCRICAO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Produto[0].VALOR_UNITARIO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Produto[0].QTD_VENDIDA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Produto[0].TOTAL_VENDIDO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Produto[0].QTD_ESTOQUE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Produto[0].STATUS)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Produto)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.COD_PRODUTO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DESCRICAO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VALOR_UNITARIO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QTD_VENDIDA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TOTAL_VENDIDO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QTD_ESTOQUE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.STATUS)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>    

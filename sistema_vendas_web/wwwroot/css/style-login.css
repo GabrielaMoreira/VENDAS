@@ -1,0 +1,41 @@
+/*Limpar as formatações padrões*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#content-login {
+    width: 480px;
+    margin: 0% auto;
+    border: 2px solid rgba(255,255,255,0.0);
+    background-color: black;
+    /*background-color: rgba(255,255,255,0.2);*/
+    border-radius: 2%;
+}
+
+.content {
+    width: 380px;
+    margin: 6% auto;
+}
+
+#imagem-usuario {
+    border: 2px solid red;
+    width: 120px;
+    margin: 0% auto;
+    margin-bottom: -5%;
+    margin-top: 5%;
+    float: inherit;
+    clear: both;
+    border: 2px solid rgba(255,255,255,0.0);
+}
+
+.cor-botao {
+    background-color: #229FCB;
+    border: 2px solid #229FCB;
+    color: #ffffff;
+    border-radius: 10%;
+}
+
+body {
+    background-image: linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);
+}

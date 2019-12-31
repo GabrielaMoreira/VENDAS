@@ -1,0 +1,795 @@
+﻿@page
+@model sistema_vendas_web.Pages.Private.Notas.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_Layout";
+}
+
+
+<div class="mt-2">
+    <h6>Nova Nota</h6>
+</div>
+<hr />
+
+<form method="post">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="NotaFiscal.STATUS" value="Emitido" />
+
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-2">
+                <label asp-for="NotaFiscal.SERIE" class="control-label"></label>
+                <select asp-for="NotaFiscal.SERIE" class="form-control">
+                    <option value="" selected disabled>Selecione</option>
+                    <option value="1">NF-e</option>
+                    <option value="2">CT-e</option>
+                    <option value="3">NFS-e</option>
+                    <option value="4">NFC-e</option>
+                </select>
+                <span asp-validation-for="NotaFiscal.SERIE" class="text-danger"></span>
+            </div>
+            <div class="col col2 col-sm-8">
+                <label asp-for="NotaFiscal.CHAVE_ACESSO" class="control-label"></label>
+                <input asp-for="NotaFiscal.CHAVE_ACESSO" class="form-control" />
+                <span asp-validation-for="NotaFiscal.CHAVE_ACESSO" class="text-danger"></span>
+            </div>
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.ESPECIE" class="control-label"></label>
+                <input asp-for="NotaFiscal.ESPECIE" class="form-control" />
+                <span asp-validation-for="NotaFiscal.ESPECIE" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-3">
+                <label asp-for="NotaFiscal.NATUREZA" class="control-label"></label>
+                <input asp-for="NotaFiscal.NATUREZA" class="form-control" />
+                <span asp-validation-for="NotaFiscal.NATUREZA" class="text-danger"></span>
+            </div>
+            <div class="col col2 col-sm-3">
+                <label asp-for="NotaFiscal.DATA_ENTRADA" class="control-label"></label>
+                <div class="input-group">
+                    <input asp-for="NotaFiscal.DATA_ENTRADA" class="form-control" />
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><img src="~/image/icon/16px/calendar.png" /></span>
+                    </div>
+                </div>
+                <span asp-validation-for="NotaFiscal.DATA_ENTRADA" class="text-danger"></span>
+            </div>
+            <div class="col col3 col-sm-3">
+                <label asp-for="NotaFiscal.DATA_SAIDA" class="control-label"></label>
+                <div class="input-group">
+                    <input asp-for="NotaFiscal.DATA_SAIDA" class="form-control" />
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><img src="~/image/icon/16px/calendar.png" /></span>
+                    </div>
+                </div>
+                <span asp-validation-for="NotaFiscal.DATA_SAIDA" class="text-danger"></span>
+            </div>
+            <div class="col col4 col-sm-3">
+                <label asp-for="NotaFiscal.COD_PEDIDO" class="control-label"></label>
+                <div class="input-group">
+                    <input id="codigoPedido" asp-for="NotaFiscal.COD_PEDIDO" class="form-control" />
+                    <div class="input-group-append">
+                        <button type="button" id="visualizar" class="btn btn-sm btn-primary" style="width:90px">Pesquisar</button>
+                        <button type="button" onclick="LimparPedido();" class="btn btn-outline-warning" style="width:70px">Limpar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-2">
+                <label asp-for="NotaFiscal.COD_CLIENTE" class="control-label"></label>
+                <input id="codigoCliente" asp-for="NotaFiscal.COD_CLIENTE" class="form-control" readonly />
+            </div>
+            <div class="col col1 col-sm-3">
+                <label>CNPJ/CPF CLIENTE</label>
+                <input id="CPFCNPJCliente" class="form-control" readonly />
+            </div>
+            <div class="col col2 col-sm-2">
+                <label asp-for="NotaFiscal.TIPO_CLIENTE" class="control-label"></label>
+                <input id="tipoCliente" asp-for="NotaFiscal.TIPO_CLIENTE" class="form-control" readonly />                
+            </div>
+            <div class="col col3 col-sm-5">
+                <label>NOME CLIENTE</label>
+                <input id="nomeCliente" class="form-control" readonly />
+            </div>
+        </div>
+    </div>
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-3">
+                <label>TELEFONE</label>
+                <input id="telefoneCliente" class="form-control" readonly />
+            </div>
+            <div class="col col2 col-sm-2">
+                <label>CEP</label>
+                <div class="input-group">
+                    <input id="cepCliente" class="form-control" readonly />
+                </div>
+            </div>
+            <div class="col col3 col-sm-7">
+                <label>LOGRADOURO</label>
+                <input id="logradouroCliente" class="form-control" readonly />
+            </div>
+            <div class="col col4 col-sm-2">
+                <label>NÚMERO</label>
+                <input id="numeroCliente" class="form-control" readonly />
+            </div>
+            <div class="col col5 col-sm-5">
+                <label>BAIRRO</label>
+                <input id="bairroCliente" class="form-control" readonly />
+            </div>
+            <div class="col col6 col-sm-5">
+                <label>COMPLEMENTO</label>
+                <input id="complementoCliente" class="form-control" readonly />
+            </div>
+            <div class="col col7 col-sm-4">
+                <label>CIDADE</label>
+                <input id="cidadeCliente" class="form-control" readonly />
+            </div>
+            <div class="col col8 col-sm-2">
+                <label>UF</label>
+                <input id="ufCliente" class="form-control" readonly />
+            </div>
+        </div>
+    </div>
+
+
+    <div id="produtos" style="display: none">
+        <div class="mt-5">
+            <h6>Produtos do Pedido</h6>
+        </div>
+        <hr />
+        <div style="height: 300px; overflow-y: scroll;" class="mt-5">
+            <table id="gridProduto" class="table table-hover">
+                <thead>
+                    <tr class="bg-light">
+                        <th>
+                            COD.
+                        </th>
+                        <th>
+                            NOME PRODUTO
+                        </th>
+                        <th>
+                            PREÇO UNIT.
+                        </th>
+                        <th>
+                            QTD.
+                        </th>
+                        <th>
+                            TOTAL
+                        </th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="mt-5">
+        <h6>Impostos e Tributos</h6>
+    </div>
+    <hr />
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.BASE_ICMS" class="control-label"></label>
+                <input id="baseICMS" asp-for="NotaFiscal.BASE_ICMS" value="0" class="form-control" readonly />
+                <span asp-validation-for="NotaFiscal.BASE_ICMS" class="text-danger"></span>
+            </div>
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.VALOR_ICMS" class="control-label"></label>
+                <input id="valorICMS" asp-for="NotaFiscal.VALOR_ICMS" value="0" class="form-control" readonly />
+                <span asp-validation-for="NotaFiscal.VALOR_ICMS" class="text-danger"></span>
+            </div>
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.BASE_ICMS_ST" class="control-label"></label>
+                <input id="baseICMS_ST" asp-for="NotaFiscal.BASE_ICMS_ST" value="0" class="form-control" readonly />
+                <span asp-validation-for="NotaFiscal.BASE_ICMS_ST" class="text-danger"></span>
+            </div>
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.VALOR_ICMS_ST" class="control-label"></label>
+                <input id="valorICMS_ST" asp-for="NotaFiscal.VALOR_ICMS_ST" value="0" class="form-control" readonly />
+                <span asp-validation-for="NotaFiscal.VALOR_ICMS_ST" class="text-danger"></span>
+            </div>
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.VALOR_PIS" class="control-label"></label>
+                <input id="valorPIS" asp-for="NotaFiscal.VALOR_PIS" value="0" class="form-control" readonly />
+                <span asp-validation-for="NotaFiscal.VALOR_PIS" class="text-danger"></span>
+            </div>
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.VALOR_FRETE" class="control-label"></label>
+                <input id="frete" asp-for="frete" value="0" class="form-control" readonly />
+                <span asp-validation-for="NotaFiscal.VALOR_FRETE" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.VALOR_SEGURO" class="control-label"></label>
+                <input id="seguro" asp-for="NotaFiscal.VALOR_SEGURO" value="0" class="form-control" readonly />
+                <span asp-validation-for="NotaFiscal.VALOR_SEGURO" class="text-danger"></span>
+            </div>
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.VALOR_COFINS" class="control-label"></label>
+                <input id="valorCOFINS" asp-for="NotaFiscal.VALOR_COFINS" value="0" class="form-control" readonly />
+                <span asp-validation-for="NotaFiscal.VALOR_COFINS" class="text-danger"></span>
+            </div>
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.VALOR_IPI" class="control-label"></label>
+                <input id="valorIPI" asp-for="NotaFiscal.VALOR_IPI" value="0" class="form-control" readonly />
+                <span asp-validation-for="NotaFiscal.VALOR_IPI" class="text-danger"></span>
+            </div>
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.DESPESAS" class="control-label"></label>
+                <input id="despesas" asp-for="NotaFiscal.DESPESAS" value="0" class="form-control" readonly />
+                <span asp-validation-for="NotaFiscal.DESPESAS" class="text-danger"></span>
+            </div>
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.DESCONTO" class="control-label"></label>
+                <input id="desconto" asp-for="desconto" value="0" class="form-control" readonly />
+                <span asp-validation-for="NotaFiscal.DESCONTO" class="text-danger"></span>
+            </div>
+
+        </div>
+    </div>
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col3 col-sm-6">
+                <label asp-for="NotaFiscal.SUBTOTAL" class="control-label"></label>
+                <input id="subtotal" asp-for="subtotal" value="0" class="form-control" readonly />
+                <span asp-validation-for="NotaFiscal.SUBTOTAL" class="text-danger"></span>
+            </div>
+            <div class="col col3 col-sm-6">
+                <label asp-for="NotaFiscal.TOTAL" class="control-label"></label>
+                <input id="total" asp-for="total" value="0" class="form-control" readonly />
+
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5">
+        <h6>Transportadora</h6>
+    </div>
+    <hr />
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.CNPJ" class="control-label"></label>
+                <input asp-for="NotaFiscal.CNPJ" class="form-control" />
+                <span asp-validation-for="NotaFiscal.CNPJ" class="text-danger"></span>
+            </div>
+            <div class="col col3 col-sm-3">
+                <label asp-for="NotaFiscal.INSCRICAO_ESTADUAL" class="control-label"></label>
+                <input asp-for="NotaFiscal.INSCRICAO_ESTADUAL" class="form-control" />
+                <span asp-validation-for="NotaFiscal.INSCRICAO_ESTADUAL" class="text-danger"></span>
+            </div>
+            <div class="col col3 col-sm-7">
+                <label asp-for="NotaFiscal.RAZAO_SOCIAL" class="control-label"></label>
+                <input asp-for="NotaFiscal.RAZAO_SOCIAL" class="form-control" />
+                <span asp-validation-for="NotaFiscal.RAZAO_SOCIAL" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="mt-5">
+        <h6>Endereço da Transportadora</h6>
+    </div>
+    <hr />
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.CEP" class="control-label"></label>
+                <input asp-for="NotaFiscal.CEP" class="form-control" />
+                <span asp-validation-for="NotaFiscal.CEP" class="text-danger"></span>
+            </div>
+            <div class="col col3 col-sm-8">
+                <label asp-for="NotaFiscal.LOGRADOURO" class="control-label"></label>
+                <input asp-for="NotaFiscal.LOGRADOURO" class="form-control" />
+                <span asp-validation-for="NotaFiscal.LOGRADOURO" class="text-danger"></span>
+            </div>
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.NUMERO" class="control-label"></label>
+                <input asp-for="NotaFiscal.NUMERO" class="form-control" />
+                <span asp-validation-for="NotaFiscal.NUMERO" class="text-danger"></span>
+            </div>
+
+        </div>
+    </div>
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col3 col-sm-6">
+                <label asp-for="NotaFiscal.BAIRRO" class="control-label"></label>
+                <input asp-for="NotaFiscal.BAIRRO" class="form-control" />
+                <span asp-validation-for="NotaFiscal.BAIRRO" class="text-danger"></span>
+            </div>
+            <div class="col col3 col-sm-4">
+                <label asp-for="NotaFiscal.CIDADE" class="control-label"></label>
+                <input asp-for="NotaFiscal.CIDADE" class="form-control" />
+                <span asp-validation-for="NotaFiscal.CIDADE" class="text-danger"></span>
+            </div>
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.UF" class="control-label"></label>
+                <select asp-for="NotaFiscal.UF" class="form-control">
+                    <option value="" selected disabled>Selecione</option>
+                    <option value="AC">AC</option>
+                    <option value="AL">AL</option>
+                    <option value="AP">AP</option>
+                    <option value="AM">AM</option>
+                    <option value="BA">BA</option>
+                    <option value="CE">CE</option>
+                    <option value="DF">DF</option>
+                    <option value="ES">ES</option>
+                    <option value="GO">GO</option>
+                    <option value="MA">MA</option>
+                    <option value="MT">MT</option>
+                    <option value="MS">MS</option>
+                    <option value="MG">MG</option>
+                    <option value="PA">PA</option>
+                    <option value="PB">PB</option>
+                    <option value="PR">PR</option>
+                    <option value="PE">PE</option>
+                    <option value="PI">PI</option>
+                    <option value="RJ">RJ</option>
+                    <option value="RN">RN</option>
+                    <option value="RS">RS</option>
+                    <option value="RO">RO</option>
+                    <option value="RR">RR</option>
+                    <option value="SC">SC</option>
+                    <option value="SP">SP</option>
+                    <option value="SE">SE</option>
+                    <option value="TO">TO</option>
+                </select>
+                <span asp-validation-for="NotaFiscal.UF" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="mt-5">
+
+    </div>
+    <hr />
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col3 col-sm-4">
+                <label asp-for="NotaFiscal.PLACA_VEICULO" class="control-label"></label>
+                <input asp-for="NotaFiscal.PLACA_VEICULO" class="form-control" />
+                <span asp-validation-for="NotaFiscal.PLACA_VEICULO" class="text-danger"></span>
+            </div>
+
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.UF_VEICULO" class="control-label"></label>
+                <select asp-for="NotaFiscal.UF_VEICULO" class="form-control">
+                    <option value="" selected disabled>Selecione</option>
+                    <option value="AC">AC</option>
+                    <option value="AL">AL</option>
+                    <option value="AP">AP</option>
+                    <option value="AM">AM</option>
+                    <option value="BA">BA</option>
+                    <option value="CE">CE</option>
+                    <option value="DF">DF</option>
+                    <option value="ES">ES</option>
+                    <option value="GO">GO</option>
+                    <option value="MA">MA</option>
+                    <option value="MT">MT</option>
+                    <option value="MS">MS</option>
+                    <option value="MG">MG</option>
+                    <option value="PA">PA</option>
+                    <option value="PB">PB</option>
+                    <option value="PR">PR</option>
+                    <option value="PE">PE</option>
+                    <option value="PI">PI</option>
+                    <option value="RJ">RJ</option>
+                    <option value="RN">RN</option>
+                    <option value="RS">RS</option>
+                    <option value="RO">RO</option>
+                    <option value="RR">RR</option>
+                    <option value="SC">SC</option>
+                    <option value="SP">SP</option>
+                    <option value="SE">SE</option>
+                    <option value="TO">TO</option>
+                </select>
+                <span asp-validation-for="NotaFiscal.UF_VEICULO" class="text-danger"></span>
+            </div>
+            <div class="col col3 col-sm-3">
+                <label asp-for="NotaFiscal.FRETE_CONTA" class="control-label"></label>
+                <input asp-for="NotaFiscal.FRETE_CONTA" class="form-control" />
+                <span asp-validation-for="NotaFiscal.FRETE_CONTA" class="text-danger"></span>
+            </div>
+            <div class="col col3 col-sm-3">
+                <label asp-for="NotaFiscal.FRETE_TRANSPORTADORA" class="control-label"></label>
+                <input asp-for="NotaFiscal.FRETE_TRANSPORTADORA" class="form-control" value="0.00" />
+                <span asp-validation-for="NotaFiscal.FRETE_TRANSPORTADORA" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="mt-5">
+
+    </div>
+    <hr />
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col3 col-sm-3">
+                <label asp-for="NotaFiscal.ESPECIE_TRANSPORTADORA" class="control-label"></label>
+                <input asp-for="NotaFiscal.ESPECIE_TRANSPORTADORA" class="form-control" />
+                <span asp-validation-for="NotaFiscal.ESPECIE_TRANSPORTADORA" class="text-danger"></span>
+            </div>
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.QTD_CARGA" class="control-label"></label>
+                <input asp-for="NotaFiscal.QTD_CARGA" class="form-control" />
+                <span asp-validation-for="NotaFiscal.QTD_CARGA" class="text-danger"></span>
+            </div>
+            <div class="col col3 col-sm-3">
+                <label asp-for="NotaFiscal.ESPECIE_CARGA" class="control-label"></label>
+                <input asp-for="NotaFiscal.ESPECIE_CARGA" class="form-control" />
+                <span asp-validation-for="NotaFiscal.ESPECIE_CARGA" class="text-danger"></span>
+            </div>
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.PESO_BRUTO" class="control-label"></label>
+                <input asp-for="NotaFiscal.PESO_BRUTO" class="form-control" />
+                <span asp-validation-for="NotaFiscal.PESO_BRUTO" class="text-danger"></span>
+            </div>
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.PESO_LIQUIDO" class="control-label"></label>
+                <input asp-for="NotaFiscal.PESO_LIQUIDO" class="form-control" />
+                <span asp-validation-for="NotaFiscal.PESO_LIQUIDO" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="mt-5">
+
+    </div>
+    <hr />
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col3 col-sm-6">
+                <label asp-for="NotaFiscal.INF_COMPLEMENTARES" class="control-label"></label>
+                <textarea rows="3" asp-for="NotaFiscal.INF_COMPLEMENTARES" class="form-control"></textarea>
+                <span asp-validation-for="NotaFiscal.INF_COMPLEMENTARES" class="text-danger"></span>
+            </div>
+            <div class="col col3 col-sm-6">
+                <label asp-for="NotaFiscal.RESERVADO_FISCO" class="control-label"></label>
+                <textarea rows="3" asp-for="NotaFiscal.RESERVADO_FISCO" class="form-control"></textarea>
+                <span asp-validation-for="NotaFiscal.RESERVADO_FISCO" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Item Pedido -->
+    <input type="hidden" asp-for="item" id="lista" />
+
+    <div class="form-group mt-5">
+        <input onclick="Lista_ItemPedido();" type="submit" value="Salvar" class="btn btn-sm btn btn-primary" style="width:100px" />
+        <a asp-page="Index" class="btn btn-sm btn-outline-primary ml-2" style="width:100px">Voltar a Lista</a>
+    </div>
+
+</form>
+
+<!-- MODAL DE PEDIDO NÃO ENCONTRADO-->
+<div class="modal fade" id="semPedido" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center" id="myModalLabel">Atenção</h4>
+                <button type="button" class="close ml-auto" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body text-center">
+                <p>Não há pedido cadastrado com o código informado!</p>
+                <p>Por favor, verifique o pedido com o cliente.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">OK</button>
+                <button type="button" class="btn btn-sm" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+    <link rel="stylesheet" href="~/js/code_jquery.css">
+    <script src="~/js/code_jquery.js"></script>
+    <script src="~/js/code_jquery2.js"></script>
+    <script>
+
+
+        /*CARREGAR DADOS DO PEDIDO*/
+        $(document).ready(function () {
+            $("#visualizar").click(function () {
+                var data = document.getElementById("codigoPedido").value;
+                $.ajax({
+                    type: "Get",
+                    url: "?handler=Visualizar_ItemPedido&codigo=" + data,
+                    success: function (data) {
+                        if (data == "FALSE") {
+                            jQuery.noConflict();
+                            $('#semPedido').modal('show');
+                        }
+                        else {
+                            var json = $.parseJSON(data);
+
+                            if (document.getElementById("produtos").style.display == "none") {
+                                document.getElementById("produtos").style.display = "block";
+
+                                for (var cont = 0; cont < json.length; cont++) {
+
+                                    var codigo = json[cont].codigo_produto;
+                                    var nome = json[cont].descricao;
+                                    var precoUnitario = json[cont].preco_unitario;
+                                    var quantidade = json[cont].quantidade;
+                                    var total = json[cont].total;
+
+
+                                    $('#gridProduto tbody').append('<tr id="' + codigo + '">' +
+                                        '<td>' + codigo + '</td>' +
+                                        '<td>' + nome + '</td>' +
+                                        '<td>' + precoUnitario + '</td>' +
+                                        '<td>' + quantidade + '</td>' +
+                                        '<td>' + total + '</td>' +
+                                        '</tr>');
+                                }
+                            }
+
+                            var codigoPedido = document.getElementById("codigoPedido").value;
+                            /* Subtotal */
+                            $.ajax({
+                                type: "Get",
+                                url: "?handler=Preencher_SubtotalPedido&codigo=" + codigoPedido,
+                                success: function (data) {
+
+                                    /*SubTotal*/
+                                    var subtotal = 0;
+                                    subtotal = parseFloat(data);
+                                    $('#subtotal').val(subtotal.toFixed(2));
+
+                                    /*Base ICMS*/
+                                    var baseICMS = "0.18";
+                                    $('#baseICMS').val(baseICMS);
+
+                                    /*Valor ICMS*/
+                                    var baseICMS = $('#baseICMS').val();
+                                    var valorICMS = 0;
+                                    baseICMS = parseFloat(baseICMS);
+                                    valorICMS = subtotal * baseICMS;
+                                    $('#valorICMS').val(valorICMS.toFixed(2));
+
+                                    /*Base ICMS_ST*/
+                                    var baseICMS_ST = "0.24";
+                                    $('#baseICMS_ST').val(baseICMS_ST);
+
+                                    /*Valor ICMS_ST*/
+                                    var baseICMS_ST = $('#baseICMS_ST').val();
+                                    var valorICMS_ST = 0;
+                                    baseICMS_ST = parseFloat(baseICMS_ST);
+                                    valorICMS_ST = subtotal * baseICMS_ST;
+                                    $('#valorICMS_ST').val(valorICMS_ST.toFixed(2));
+
+                                    /*Valor PIS*/
+                                    var valorPIS = "0.15";
+                                    $('#valorPIS').val(valorPIS);
+
+                                    /*Valor Seguro*/
+                                    var seguro = "0.00";
+                                    $('#seguro').val(seguro);
+
+                                    /*Valor COFINS*/
+                                    var valorCOFINS = "0.48";
+                                    $('#valorCOFINS').val(valorCOFINS);
+
+                                    /*Valor IPI*/
+                                    var valorIPI = "0.32";
+                                    $('#valorIPI').val(valorIPI);
+
+                                    /*Outras despesas*/
+                                    var despesas = "0.00";
+                                    $('#despesas').val(despesas);
+
+                                }
+                            })
+
+                            /* Tipo Cliente */
+                            $.ajax({
+                                type: "Get",
+                                url: "?handler=Preencher_TipoClientePedido&codigo=" + codigoPedido,
+                                success: function (data) {
+                                    $('#tipoCliente').val(data);
+                                }
+                            });
+
+                            /* Codigo Cliente */
+                            $.ajax({
+                                type: "Get",
+                                url: "?handler=Preencher_CodigoClientePedido&codigo=" + codigoPedido,
+                                success: function (data) {
+                                    $('#codigoCliente').val(data);
+                                }
+                            });
+
+                            /* Dados Cliente */
+                            var type = document.getElementById("tipoCliente").value;
+                            $.ajax({
+                                type: "Get",
+                                url: "?handler=Preencher_CPFCNPJClientePedido&codigo=" + codigoPedido,
+                                success: function (data) {
+                                    $('#CPFCNPJCliente').val(data);
+                                }
+                            });
+                            $.ajax({
+                                type: "Get",
+                                url: "?handler=Preencher_NomeCliente&codigo=" + codigoPedido,
+                                success: function (data) {
+                                    $('#nomeCliente').val(data);
+                                }
+                            });
+                            $.ajax({
+                                type: "Get",
+                                url: "?handler=Preencher_TelefoneCliente&codigo=" + codigoPedido,
+                                success: function (data) {
+                                    $('#telefoneCliente').val(data);
+                                }
+                            });
+                            $.ajax({
+                                type: "Get",
+                                url: "?handler=Preencher_CepCliente&codigo=" + codigoPedido,
+                                success: function (data) {
+                                    $('#cepCliente').val(data);
+                                }
+                            });
+                            $.ajax({
+                                type: "Get",
+                                url: "?handler=Preencher_LogradouroCliente&codigo=" + codigoPedido,
+                                success: function (data) {
+                                    $('#logradouroCliente').val(data);
+                                }
+                            });
+                            $.ajax({
+                                type: "Get",
+                                url: "?handler=Preencher_NumeroCliente&codigo=" + codigoPedido,
+                                success: function (data) {
+                                    $('#numeroCliente').val(data);
+                                }
+                            });
+                            $.ajax({
+                                type: "Get",
+                                url: "?handler=Preencher_BairroCliente&codigo=" + codigoPedido,
+                                success: function (data) {
+                                    $('#bairroCliente').val(data);
+                                }
+                            });
+                            $.ajax({
+                                type: "Get",
+                                url: "?handler=Preencher_ComplementoCliente&codigo=" + codigoPedido,
+                                success: function (data) {
+                                    $('#complementoCliente').val(data);
+                                }
+                            });
+                            $.ajax({
+                                type: "Get",
+                                url: "?handler=Preencher_CidadeCliente&codigo=" + codigoPedido,
+                                success: function (data) {
+                                    $('#cidadeCliente').val(data);
+                                }
+                            });
+                            $.ajax({
+                                type: "Get",
+                                url: "?handler=Preencher_UfCliente&codigo=" + codigoPedido,
+                                success: function (data) {
+                                    $('#ufCliente').val(data);
+                                }
+                            });
+
+
+                        }
+                    }
+                });
+
+                /* Total */
+                $.ajax({
+                    type: "Get",
+                    url: "?handler=Preencher_TotalPedido&codigo=" + data,
+                    success: function (data) {
+                        var total = 0;
+                        total = parseFloat(data);
+                        $('#total').val(total.toFixed(2));
+                    }
+                });
+
+                /* Desconto */
+                $.ajax({
+                    type: "Get",
+                    url: "?handler=Preencher_DescontoPedido&codigo=" + data,
+                    success: function (data) {
+                        var desconto = 0;
+                        desconto = parseFloat(data);
+                        $('#desconto').val(desconto.toFixed(2));
+                    }
+                });
+
+                /* Frete */
+                $.ajax({
+                    type: "Get",
+                    url: "?handler=Preencher_FretePedido&codigo=" + data,
+                    success: function (data) {
+                        if (data == "Sem") {
+                            $('#frete').val("0.00");
+                        }
+                        else {
+                            $('#frete').val("20.00");
+                        }
+
+                    }
+                });                
+
+            })
+        });
+
+        
+        /*FUNÇÕES LIMPAR CAMPOS*/
+        function LimparPedido() {
+            document.getElementById("codigoPedido").value = "";
+            document.getElementById("produtos").style.display = "none";
+            
+            document.getElementById("tipoCliente").value = "";
+            document.getElementById("CPFCNPJCliente").value = "";
+            document.getElementById("codigoCliente").value = "";
+            document.getElementById("nomeCliente").value = "";
+            document.getElementById("telefoneCliente").value = "";
+            document.getElementById("cepCliente").value = "";
+            document.getElementById("logradouroCliente").value = "";
+            document.getElementById("numeroCliente").value = "";
+            document.getElementById("bairroCliente").value = "";
+            document.getElementById("complementoCliente").value = "";
+            document.getElementById("cidadeCliente").value = "";
+            document.getElementById("ufCliente").value = "";
+
+            document.getElementById("total").value = "0";
+            document.getElementById("subtotal").value = "0";
+            document.getElementById("desconto").value = "0";
+            document.getElementById("despesas").value = "0";
+            document.getElementById("valorIPI").value = "0";
+            document.getElementById("valorCOFINS").value = "0";
+            document.getElementById("seguro").value = "0";
+            document.getElementById("frete").value = "0";
+            document.getElementById("valorPIS").value = "0";
+            document.getElementById("valorICMS_ST").value = "0";
+            document.getElementById("baseICMS_ST").value = "0";
+            document.getElementById("valorICMS").value = "0";
+            document.getElementById("baseICMS").value = "0";
+        };
+
+
+
+        /*PUSH DA GRID DE ITEMS PEDIDO EM LISTA DE APOIO*/
+        function Lista_ItemPedido() {
+
+            var lista_item = [];
+            var lista_apoio = [];
+            var cont = 0;
+
+
+            $("table#gridProduto tr").each(function () {
+                var tableData = $(this).find('td');
+
+                if (tableData.length > 0) {
+                    tableData.each(function () { lista_apoio.push($(this).text()); });
+                    lista_item.push(lista_apoio[cont], lista_apoio[cont + 1], lista_apoio[cont + 2], lista_apoio[cont + 3], lista_apoio[cont + 4]);
+                    cont += 5;
+                }
+
+            });
+            $('#lista').val(lista_item);
+
+        };
+
+    </script>
+}

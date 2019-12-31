@@ -1,0 +1,356 @@
+﻿@page
+@model sistema_vendas_web.Pages.Private.Notas.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h6 class="mt-2">Consulta Pedido</h6>
+<hr />
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" id="codigo" asp-for="NotaFiscal.NUM_NOTA" />
+
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col1 col-sm-2">
+                <label asp-for="NotaFiscal.NUM_NOTA" class="control-label"></label>
+                <input asp-for="NotaFiscal.NUM_NOTA" class="form-control" disabled />
+            </div>
+            <div class="col col1 col-sm-2">
+                <label asp-for="NotaFiscal.SERIE" class="control-label"></label>
+                <input asp-for="NotaFiscal.SERIE" class="form-control" disabled />
+            </div>
+            <div class="col col2 col-sm-8">
+                <label asp-for="NotaFiscal.CHAVE_ACESSO" class="control-label"></label>
+                <input asp-for="NotaFiscal.CHAVE_ACESSO" class="form-control" disabled />
+            </div>
+        </div>
+    </div>
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col3 col-sm-3">
+                <label asp-for="NotaFiscal.ESPECIE" class="control-label"></label>
+                <input asp-for="NotaFiscal.ESPECIE" class="form-control" disabled />
+            </div>
+            <div class="col col1 col-sm-3">
+                <label asp-for="NotaFiscal.NATUREZA" class="control-label"></label>
+                <input asp-for="NotaFiscal.NATUREZA" class="form-control" disabled />
+            </div>
+            <div class="col col2 col-sm-3">
+                <label asp-for="NotaFiscal.DATA_ENTRADA" class="control-label"></label>
+                <div class="input-group">
+                    <input asp-for="NotaFiscal.DATA_ENTRADA" class="form-control" disabled />
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><img src="~/image/icon/16px/calendar.png" /></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col col3 col-sm-3">
+                <label asp-for="NotaFiscal.DATA_SAIDA" class="control-label"></label>
+                <div class="input-group">
+                    <input asp-for="NotaFiscal.DATA_SAIDA" class="form-control" disabled />
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><img src="~/image/icon/16px/calendar.png" /></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col4 col-sm-3">
+                <label asp-for="NotaFiscal.TIPO_CLIENTE" class="control-label"></label>
+                <input asp-for="NotaFiscal.TIPO_CLIENTE" class="form-control" disabled />
+                <span asp-validation-for="NotaFiscal.TIPO_CLIENTE" class="text-danger"></span>
+            </div>
+            <div class="col col2 col-sm-2">
+                <label>COD. CLIENTE</label>
+                <input asp-for="NotaFiscal.COD_CLIENTE" class="form-control" disabled />
+            </div>
+            <div class="col col3 col-sm-3  ml-auto">
+                <label asp-for="NotaFiscal.COD_PEDIDO" class="control-label"></label>
+                <input asp-for="NotaFiscal.COD_PEDIDO" class="form-control" disabled />
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group mt-5">
+        <button type="button" id="visualizar" class="btn btn-sm btn-outline-warning" style="width:100px">Mostrar Itens</button>
+        <a asp-page="./Index" class="btn btn-sm btn-outline-primary ml-2" style="width:100px">Voltar a Lista</a>
+    </div>
+
+    <div id="produtos" style="display: none">
+
+        <div class="mt-5">
+            <h6>Itens da Nota</h6>
+        </div>
+        <hr />
+        <div style="height: 300px; overflow-y: scroll;" class="mt-5">
+            <table id="gridProduto" class="table table-hover">
+                <thead>
+                    <tr class="bg-light">
+                        <th>
+                            COD.
+                        </th>
+                        <th>
+                            NOME PRODUTO
+                        </th>
+                        <th>
+                            PREÇO UNIT.
+                        </th>
+                        <th>
+                            QTD.
+                        </th>
+                        <th>
+                            TOTAL
+                        </th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="mt-5">
+        <h6>Impostos e Tributos</h6>
+    </div>
+    <hr />
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.BASE_ICMS" class="control-label"></label>
+                <input asp-for="NotaFiscal.BASE_ICMS" class="form-control" disabled />                
+            </div>
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.VALOR_ICMS" class="control-label"></label>
+                <input asp-for="NotaFiscal.VALOR_ICMS" class="form-control" disabled />                
+            </div>
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.BASE_ICMS_ST" class="control-label"></label>
+                <input asp-for="NotaFiscal.BASE_ICMS_ST" class="form-control" disabled />                
+            </div>
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.VALOR_ICMS_ST" class="control-label"></label>
+                <input asp-for="NotaFiscal.VALOR_ICMS_ST" class="form-control" disabled />               
+            </div>
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.VALOR_PIS" class="control-label"></label>
+                <input asp-for="NotaFiscal.VALOR_PIS" class="form-control" disabled />                
+            </div>
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.VALOR_FRETE" class="control-label"></label>
+                <input asp-for="NotaFiscal.VALOR_FRETE" class="form-control" disabled />                
+            </div>
+        </div>
+    </div>
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.VALOR_SEGURO" class="control-label"></label>
+                <input asp-for="NotaFiscal.VALOR_SEGURO" class="form-control" disabled />                
+            </div>
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.VALOR_COFINS" class="control-label"></label>
+                <input asp-for="NotaFiscal.VALOR_COFINS" class="form-control" disabled />                
+            </div>
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.VALOR_IPI" class="control-label"></label>
+                <input asp-for="NotaFiscal.VALOR_IPI" class="form-control" disabled />                
+            </div>
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.DESPESAS" class="control-label"></label>
+                <input asp-for="NotaFiscal.DESPESAS" class="form-control" disabled />                
+            </div>
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.DESCONTO" class="control-label"></label>
+                <input asp-for="NotaFiscal.DESCONTO" class="form-control" disabled />                
+            </div>
+        </div>
+    </div>
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col3 col-sm-6">
+                <label asp-for="NotaFiscal.SUBTOTAL" class="control-label"></label>
+                <input asp-for="NotaFiscal.SUBTOTAL" class="form-control" disabled />                
+            </div>
+            <div class="col col3 col-sm-6">
+                <label asp-for="NotaFiscal.TOTAL" class="control-label"></label>
+                <input asp-for="NotaFiscal.TOTAL" class="form-control" disabled />
+            </div>
+        </div>
+    </div>
+    <div class="mt-5">
+        <h6>Transportadora</h6>
+    </div>
+    <hr />
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.CNPJ" class="control-label"></label>
+                <input asp-for="NotaFiscal.CNPJ" class="form-control" disabled />                
+            </div>
+            <div class="col col3 col-sm-3">
+                <label asp-for="NotaFiscal.INSCRICAO_ESTADUAL" class="control-label"></label>
+                <input asp-for="NotaFiscal.INSCRICAO_ESTADUAL" class="form-control" disabled />               
+            </div>
+            <div class="col col3 col-sm-7">
+                <label asp-for="NotaFiscal.RAZAO_SOCIAL" class="control-label"></label>
+                <input asp-for="NotaFiscal.RAZAO_SOCIAL" class="form-control" disabled />                
+            </div>
+        </div>
+    </div>
+    <div class="mt-5">
+        <h6>Endereço da Transportadora</h6>
+    </div>
+    <hr />
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.CEP" class="control-label"></label>
+                <input asp-for="NotaFiscal.CEP" class="form-control" disabled />                
+            </div>
+            <div class="col col3 col-sm-8">
+                <label asp-for="NotaFiscal.LOGRADOURO" class="control-label"></label>
+                <input asp-for="NotaFiscal.LOGRADOURO" class="form-control" disabled />                
+            </div>
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.NUMERO" class="control-label"></label>
+                <input asp-for="NotaFiscal.NUMERO" class="form-control" disabled />                
+            </div>
+        </div>
+    </div>
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col3 col-sm-6">
+                <label asp-for="NotaFiscal.BAIRRO" class="control-label"></label>
+                <input asp-for="NotaFiscal.BAIRRO" class="form-control" disabled />                
+            </div>
+            <div class="col col3 col-sm-4">
+                <label asp-for="NotaFiscal.CIDADE" class="control-label"></label>
+                <input asp-for="NotaFiscal.CIDADE" class="form-control" disabled />                
+            </div>
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.UF" class="control-label"></label>
+                <input asp-for="NotaFiscal.UF" class="form-control" disabled />                
+            </div>
+        </div>
+    </div>
+    <div class="mt-5">
+
+    </div>
+    <hr />
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col3 col-sm-4">
+                <label asp-for="NotaFiscal.PLACA_VEICULO" class="control-label"></label>
+                <input asp-for="NotaFiscal.PLACA_VEICULO" class="form-control" disabled />                
+            </div>
+
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.UF_VEICULO" class="control-label"></label>
+                <input asp-for="NotaFiscal.UF_VEICULO" class="form-control" disabled />               
+            </div>
+            <div class="col col3 col-sm-3">
+                <label asp-for="NotaFiscal.FRETE_CONTA" class="control-label"></label>
+                <input asp-for="NotaFiscal.FRETE_CONTA" class="form-control" disabled />                
+            </div>
+            <div class="col col3 col-sm-3">
+                <label asp-for="NotaFiscal.FRETE_TRANSPORTADORA" class="control-label"></label>
+                <input asp-for="NotaFiscal.FRETE_TRANSPORTADORA" class="form-control" disabled />               
+            </div>
+        </div>
+    </div>
+    <div class="mt-5">
+
+    </div>
+    <hr />
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col3 col-sm-3">
+                <label asp-for="NotaFiscal.ESPECIE_TRANSPORTADORA" class="control-label"></label>
+                <input asp-for="NotaFiscal.ESPECIE_TRANSPORTADORA" class="form-control" disabled />                
+            </div>
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.QTD_CARGA" class="control-label"></label>
+                <input asp-for="NotaFiscal.QTD_CARGA" class="form-control" disabled />                
+            </div>
+            <div class="col col3 col-sm-3">
+                <label asp-for="NotaFiscal.ESPECIE_CARGA" class="control-label"></label>
+                <input asp-for="NotaFiscal.ESPECIE_CARGA" class="form-control" disabled />               
+            </div>
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.PESO_BRUTO" class="control-label"></label>
+                <input asp-for="NotaFiscal.PESO_BRUTO" class="form-control" disabled />                
+            </div>
+            <div class="col col3 col-sm-2">
+                <label asp-for="NotaFiscal.PESO_LIQUIDO" class="control-label"></label>
+                <input asp-for="NotaFiscal.PESO_LIQUIDO" class="form-control" disabled />                
+            </div>
+        </div>
+    </div>
+    <div class="mt-5">
+
+    </div>
+    <hr />
+    <div class="col col-sm-12">
+        <div class="form-row mt-2">
+            <div class="col col3 col-sm-6">
+                <label asp-for="NotaFiscal.INF_COMPLEMENTARES" class="control-label"></label>
+                <textarea rows="3" asp-for="NotaFiscal.INF_COMPLEMENTARES" class="form-control" disabled></textarea>                
+            </div>
+            <div class="col col3 col-sm-6">
+                <label asp-for="NotaFiscal.RESERVADO_FISCO" class="control-label"></label>
+                <textarea rows="3" asp-for="NotaFiscal.RESERVADO_FISCO" class="form-control" disabled></textarea>               
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <link rel="stylesheet" href="~/js/code_jquery.css">
+    <script src="~/js/code_jquery.js"></script>
+    <script src="~/js/code_jquery2.js"></script>
+    <script>
+
+        /*RETORNAR ITEMS DA NOTA*/
+        $(document).ready(function () {
+            $("#visualizar").click(function () {
+                var data = document.getElementById("codigo").value;
+                $.ajax({
+                    type: "Get",
+                    url: "?handler=Visualizar_ItemNota&codigo=" + data,
+                    success: function (data) {
+                        var json = $.parseJSON(data);
+                        $('#teste').val(json[0].total);
+
+
+                        if (document.getElementById("produtos").style.display == "none") {
+                            document.getElementById("produtos").style.display = "block";
+                            for (var cont = 0; cont < json.length; cont++) {
+
+                                var codigo = json[cont].codigo_produto;
+                                var nome = json[cont].descricao;
+                                var precoUnitario = json[cont].preco_unitario;
+                                var quantidade = json[cont].quantidade;
+                                var total = json[cont].total;
+
+                                $('#gridProduto tbody').append('<tr id="' + codigo + '">' +
+                                    '<td>' + codigo + '</td>' +
+                                    '<td>' + nome + '</td>' +
+                                    '<td>' + precoUnitario + '</td>' +
+                                    '<td>' + quantidade + '</td>' +
+                                    '<td>' + total + '</td>' +
+                                    '</tr>');
+                            }
+                        }
+                    }
+                })
+            })
+        });
+
+    </script>
+}
