@@ -1,1 +1,5 @@
-Posicionar em C:
+* Posicionar em C: a partir da pasta VENDAS
+* criar banco BD_VENDAS_FITEX
+* rodar script para criar tabelas
+* rodar script para inserir dados em tabelas
+* Trocar string de conexão no arquivo: appsettings.json (tag DevConnection)
